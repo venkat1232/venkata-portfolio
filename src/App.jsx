@@ -135,33 +135,10 @@ const Navbar = () => {
         <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-stone-950/90 backdrop-blur-lg border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 <a href="#" className="text-xl font-bold tracking-tighter text-white flex items-center gap-3 group">
-                    {/* SVG LOGO START - Updated with your centered V. */}
-                    <div className="w-10 h-10 group-hover:scale-105 transition-transform duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="-12 -12 64 64" fill="none">
-                            <defs>
-                                <linearGradient id="grad_v" x1="0%" y1="100%" x2="100%" y2="0%">
-                                    <stop offset="0%" stopColor="#ea580c"/>
-                                    <stop offset="100%" stopColor="#e11d48"/>
-                                </linearGradient>
-                                <filter id="shadow_v" x="-50%" y="-50%" width="200%" height="200%">
-                                    <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
-                                    <feOffset dx="0" dy="4" result="offsetblur"/>
-                                    <feFlood floodColor="#7c2d12" floodOpacity="0.2"/>
-                                    <feComposite in2="offsetblur" operator="in"/>
-                                    <feMerge>
-                                        <feMergeNode/>
-                                        <feMergeNode in="SourceGraphic"/>
-                                    </feMerge>
-                                </filter>
-                            </defs>
-                            <g filter="url(#shadow_v)">
-                                <rect x="0" y="0" width="40" height="40" rx="12" fill="url(#grad_v)" />
-                                {/* Corrected Centering: x="20" y="20" */}
-                                <text x="20" y="20" dy="1" dominantBaseline="central" textAnchor="middle" fill="white" fontWeight="bold" fontFamily="Arial, sans-serif" fontSize="22">V.</text>
-                            </g>
-                        </svg>
+                    {/* LOGO REVERTED TO ORIGINAL CSS VERSION */}
+                    <div className="w-10 h-10 bg-gradient-to-tr from-orange-600 to-rose-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-orange-900/20 group-hover:scale-105 transition-transform">
+                        V.
                     </div>
-                    {/* SVG LOGO END */}
                     
                     <span className={`font-bold transition-opacity duration-300 ${scrolled ? 'opacity-100' : 'opacity-0 md:opacity-100'}`}>Venkata</span>
                 </a>
@@ -448,6 +425,9 @@ const Experience = () => {
 const Contact = () => {
     const [showForm, setShowForm] = useState(false);
     const [copied, setCopied] = useState(false);
+    
+    // NEW: State for form submission status
+    const [formStatus, setFormStatus] = useState("idle"); // idle, submitting, success, error
 
     const handleCopy = () => {
         try {
@@ -471,8 +451,40 @@ const Contact = () => {
              document.body.removeChild(textArea);
              setCopied(true);
         }
-        
         setTimeout(() => setCopied(false), 2000);
+    };
+
+    // NEW: Handle the submission via JavaScript (No redirect!)
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setFormStatus("submitting");
+
+        const formData = new FormData(e.target);
+        
+        // REPLACE 'YOUR_FORMSPREE_ID' BELOW with your actual ID (e.g. xbjbqloz)
+        try {
+            const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                setFormStatus("success");
+                e.target.reset();
+                // Optional: Close form after 3 seconds
+                setTimeout(() => {
+                    setShowForm(false);
+                    setFormStatus("idle");
+                }, 3000);
+            } else {
+                setFormStatus("error");
+            }
+        } catch (error) {
+            setFormStatus("error");
+        }
     };
 
     return (
@@ -513,48 +525,70 @@ const Contact = () => {
                                 <h3 className="text-xl font-bold text-white">Project Details</h3>
                                 <button onClick={() => setShowForm(false)} className="text-stone-500 hover:text-white"><X size={20}/></button>
                             </div>
-                            {/* --- FORMSPREE UPDATE START --- */}
-                            {/* IMPORTANT: Replace 'YOUR_FORMSPREE_ID' below with your actual Formspree ID */}
-                            <form 
-                                action="https://formspree.io/f/mqajawjn" 
-                                method="POST" 
-                                className="space-y-4"
-                            >
-                                <div>
-                                    <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Name</label>
-                                    <input 
-                                        type="text" 
-                                        name="name" 
-                                        required
-                                        className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors" 
-                                        placeholder="Your Name" 
-                                    />
+
+                            {/* SUCCESS STATE: Show this if message sent successfully */}
+                            {formStatus === "success" ? (
+                                <div className="text-center py-12">
+                                    <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-green-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                                    </div>
+                                    <h4 className="text-2xl font-bold text-white mb-2">Message Sent!</h4>
+                                    <p className="text-stone-400">I'll get back to you as soon as possible.</p>
                                 </div>
-                                <div>
-                                    <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Email</label>
-                                    <input 
-                                        type="email" 
-                                        name="email" 
-                                        required
-                                        className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors" 
-                                        placeholder="your@email.com" 
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Message</label>
-                                    <textarea 
-                                        name="message" 
-                                        rows="3" 
-                                        required
-                                        className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors" 
-                                        placeholder="Tell me about your project..."
-                                    ></textarea>
-                                </div>
-                                <button type="submit" className="w-full py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl transition-all">
-                                    Send Message
-                                </button>
-                            </form>
-                            {/* --- FORMSPREE UPDATE END --- */}
+                            ) : (
+                                /* FORM STATE */
+                                <form onSubmit={handleSubmit} className="space-y-4">
+                                    <div>
+                                        <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Name</label>
+                                        <input 
+                                            type="text" 
+                                            name="name" 
+                                            required
+                                            disabled={formStatus === "submitting"}
+                                            className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors disabled:opacity-50" 
+                                            placeholder="Your Name" 
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Email</label>
+                                        <input 
+                                            type="email" 
+                                            name="email" 
+                                            required
+                                            disabled={formStatus === "submitting"}
+                                            className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors disabled:opacity-50" 
+                                            placeholder="your@email.com" 
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Message</label>
+                                        <textarea 
+                                            name="message" 
+                                            rows="3" 
+                                            required
+                                            disabled={formStatus === "submitting"}
+                                            className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors disabled:opacity-50" 
+                                            placeholder="Tell me about your project..."
+                                        ></textarea>
+                                    </div>
+                                    
+                                    {formStatus === "error" && (
+                                        <p className="text-red-500 text-sm text-center">Something went wrong. Please try again.</p>
+                                    )}
+
+                                    <button 
+                                        type="submit" 
+                                        disabled={formStatus === "submitting"}
+                                        className="w-full py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 disabled:bg-stone-800 disabled:cursor-not-allowed"
+                                    >
+                                        {formStatus === "submitting" ? (
+                                            <>Processing...</>
+                                        ) : (
+                                            <>Send Message</>
+                                        )}
+                                    </button>
+                                </form>
+                            )}
                         </motion.div>
                     )}
 
