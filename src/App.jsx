@@ -1,49 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { Menu, X, ArrowRight, Github, Linkedin, Twitter, Dribbble, Mail, Terminal, Cpu, Users, ChevronDown, ExternalLink, Bot, Workflow, FileJson, Layers, Database } from 'lucide-react';
+import { Menu, X, ArrowRight, Github, Linkedin, Twitter, Dribbble, Mail, Terminal, Bot, Workflow, Layers, Database, ExternalLink, ChevronDown, CheckCircle } from 'lucide-react';
 
-// --- OPTIMIZED DATA BASED ON RESUME ---
+// --- DATA CONFIGURATION ---
 
 const PERSONAL_INFO = {
     name: "Venkata Jarugula",
     title: "Principal RPA Architect & AI Strategist",
-    tagline: "Orchestrating the digital workforce. 12+ Years of IT & 9+ Years of RPA Experience.",
-    about: "I don't just build bots; I architect enterprise ecosystems. With deep expertise in UiPath, Blue Prism, Automation Anywhere, and Power Automate, I lead Centers of Excellence (CoE) that govern the full automation lifecycle from discovery to disaster recovery.",
+    tagline: "Orchestrating the digital workforce. 11+ Years of IT & 7+ Years of RPA Experience.",
+    about: "I don't just build bots; I architect enterprise ecosystems. With deep expertise in UiPath, Blue Prism, Automation Anywhere, and Power Automate, I lead Centers of Excellence (CoE) that govern the full automation lifecycle. My industry experience spans Healthcare, Insurance, Banking, and Retail.",
     email: "hire@vkjarugula.com",
     location: "Kansas City, MO",
-    keywords: "RPA Architect, UiPath, Blue Prism, Automation Anywhere, Power Automate, CoE Lead, SDLC, GenAI, Power Apps, Process Mining, .NET, Java"
+    keywords: "RPA Architect, UiPath, Blue Prism, Automation Anywhere, Power Automate, CoE Lead, SDLC, GenAI, Document Understanding, Process Mining, .NET, Java, Surface Automation"
 };
 
-// RESTRUCTURED EXPERIENCE BASED ON RESUME
 const EXPERIENCE = [
     {
         id: 1,
         role: "RPA Lead & Architect",
-        company: "Multiple Clients (Banking, Insurance, Healthcare)",
+        company: "Multiple Clients (Banking, Insurance, Healthcare, Retail)",
         period: "2016 — Present",
-        description: "Leading end-to-end RPA implementations using Blue Prism and UiPath. Responsible for infrastructure setup, CoE governance, team leadership, and solution design.",
+        description: "Leading platform engineering and end-to-end RPA implementations. Responsible for infrastructure setup, CoE governance, and managing cross-functional teams.",
         highlights: [
-            "End-to-End Delivery: Managed the full SDLC for automation projects, from defining requirements in Solution Design Documents (SDD) to production deployment and support.",
-            "Leadership: Led cross-functional teams including Platform Engineering, Developers, Business Analysts, and Production Controllers.",
-            "Infrastructure: Experienced in setting up and maintaining robust Blue Prism and UiPath infrastructures for global clients.",
-            "Advanced RPA: Expertise in Blue Prism Work Queues, managing robot workloads, surface automation, and handling complex exceptions."
+            "Team Leadership: Led Platform Engineering, Blue Prism/UiPath Development teams, Prod Controllers, and Business Analysts to ensure seamless delivery.",
+            "Infrastructure: Architected and maintained robust Blue Prism & UiPath infrastructure for high-availability enterprise environments.",
+            "Advanced Automation: Implemented Surface Automation for legacy systems and managed complex robot workloads using Blue Prism Work Queues.",
+            "SDLC Governance: Enforced Solution Design Document (SDD) standards and managed the full lifecycle from requirement gathering to production support."
         ],
-        tech: ["Blue Prism", "UiPath", "SQL Server 2014", "SQL Server 2018", "Infrastructure", "Leadership", "SDLC"]
+        tech: ["Blue Prism", "UiPath", "Infrastructure", "Leadership", "SDLC", "Surface Automation"]
     },
     {
         id: 2,
         role: "Sr. RPA Developer",
         company: "IT Services Company",
         period: "2013 — 2016",
-        description: "Hands-on development and deployment of automation processes in an Agile environment. Focused on building robust, scalable bots and handling complex business logic.",
+        description: "Hands-on development and deployment of automation processes in an Agile environment. Focused on building robust, scalable bots for varied business systems.",
         highlights: [
-            "Bot Development: Designed, developed, and tested bots for mainframe, web, and Windows applications using various spying methods (Win32, Accessibility, Region).",
-            "Process Optimization: Worked on defining Available Processes and Resources in the Control Room for efficient task execution.",
-            "Agile Methodology: Actively participated in Agile development cycles, ensuring timely delivery of automation sprints.",
-            "Multi-Platform: Gained working knowledge of Automation Anywhere and OpenSpan alongside deep Blue Prism expertise."
+            "Bot Engineering: Designed and tested bots using various spying methods including Win-32, Accessibility, and Region mode for dynamic applications.",
+            "Control Room Management: optimized 'Available Processes' and 'Available Resources' to maximize bot utilization and throughput.",
+            "Agile Delivery: Participated in daily stand-ups and sprint planning to deliver automation tasks on time.",
+            "Multi-Platform: Leveraged working knowledge of Automation Anywhere and OpenSpan alongside deep Blue Prism expertise."
         ],
-        tech: ["Blue Prism", "Automation Anywhere", "OpenSpan", "Agile", "C#"]
+        tech: ["Blue Prism", "Automation Anywhere", "OpenSpan", "Agile", "Win32 Spying"]
     },
     {
         id: 3,
@@ -52,42 +51,38 @@ const EXPERIENCE = [
         period: "2008 — 2013",
         description: "Full-stack application development experience using a wide range of Microsoft and Java technologies before transitioning to RPA.",
         highlights: [
-            ".NET Stack: Developed applications using C#.Net, ASP.NET, ADO.NET, Web Services, and MVC frameworks.",
-            "Java Stack: Experience in Enterprise web applications using Java/J2EE, Spring, Hibernate, JSP, and Web Services (SOAP/REST).",
-            "Database: Strong experience in designing relational database concepts, writing stored procedures, triggers, and views in Oracle and SQL Server.",
-            "Frontend & Tools: Designed UIs using HTML, CSS, JS, Bootstrap, and AngularJS. Proficient with build tools (ANT, Maven) and version control (Git, SVN)."
+            ".NET Stack: Developed enterprise applications using C#.Net 4.5, ASP.NET, MVC, ADO.NET, and XML Web Services.",
+            "Java Ecosystem: Built web applications using Java/J2EE, Spring, Hibernate, JSP, and JMS for messaging.",
+            "Database Engineering: Wrote complex Stored Procedures, Triggers, Views, and Joins on SQL Server and Oracle 10g.",
+            "Frontend: Designed user interfaces using HTML, CSS, Bootstrap, and AngularJS."
         ],
-        tech: ["C#.NET", "Java/J2EE", "SQL Server", "Oracle", "HTML/JS"]
+        tech: ["C#.NET", "Java/J2EE", "SQL Server", "Oracle 10g", "AngularJS"]
     }
 ];
 
-// UPDATED PROJECTS WITH END-TO-END FOCUS AND FIXED LINK
 const PROJECTS = [
     {
         id: 1,
-        title: "End-to-End Financial Reconciliation Engine",
+        title: "Financial Reconciliation Engine",
         category: "UiPath & AI Center",
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
-        description: "Led the full lifecycle from PDD to Hypercare of a massive unattended automation. Reconciles $50M+ daily. Features AI-powered matching and human-in-the-loop validation.",
-        // Working link to UiPath Finance solutions
+        description: "End-to-End delivery from PDD to Hypercare. Reconciles $50M+ daily using AI matching. Managed the full SDLC including UAT and Production rollout.",
         link: "https://www.uipath.com/solutions/industry/banking-and-financial-services"
     },
     {
         id: 2,
-        title: "Cognitive Invoice Processing Pipeline",
+        title: "Cognitive Invoice Processing",
         category: "Power Automate & AI Builder",
         image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&q=80&w=800",
-        description: "Managed the end-to-end implementation of an intelligent AP automation solution. Utilizes Process Mining for discovery and AI models for 99% accurate data extraction.",
-        // Working link to Microsoft Power Automate AI Builder
+        description: "Full lifecycle implementation. From discovery (Process Mining) to deployment. Uses AI models to extract data from invoices with 99% accuracy.",
         link: "https://powerautomate.microsoft.com/en-us/ai-builder/"
     },
     {
         id: 3,
-        title: "IT Ops Self-Healing & Ticketing System",
+        title: "IT Ops Self-Healing System",
         category: "Automation Anywhere A360",
         image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
-        description: "Designed and deployed a full-stack IT automation framework. Monitors system health, performs auto-remediation, and manages ticket lifecycles in ServiceNow.",
-        // FIXED: Replaced broken link with a valid A360 solutions link
+        description: "Architected a self-healing bot framework. Monitors system health, performs auto-remediation, and manages ticketing. Delivered via Agile sprints.",
         link: "https://www.automationanywhere.com/products/automation-360"
     }
 ];
@@ -97,19 +92,19 @@ const SKILL_CATEGORIES = [
         id: 'platforms',
         title: "RPA Platforms",
         icon: Bot,
-        skills: ["UiPath (Studio/Orchestrator)", "Blue Prism (Release Mgr)", "Automation Anywhere (A360)", "Power Automate (Cloud/Desktop)"]
+        skills: ["UiPath", "Blue Prism", "Automation Anywhere", "OpenSpan", "Power Automate"]
     },
     {
         id: 'arch',
         title: "Architecture & SDLC",
         icon: Layers,
-        skills: ["REFramework / Dispatcher-Performer", "PDD / SDD / ODI Documentation", "CI/CD Pipelines (Azure DevOps)", "Disaster Recovery Strategy", "Infrastructure Setup"]
+        skills: ["REFramework", "Work Queues", "PDD / SDD Documentation", "Control Room", "CI/CD Pipelines"]
     },
     {
         id: 'tech',
         title: "Development & Tech",
         icon: Database,
-        skills: ["C# .NET / ASP.NET", "Java / J2EE (Spring/Hibernate)", "SQL Server / Oracle DB", "Web Services (REST/SOAP)", "HTML/CSS/JS"]
+        skills: ["C# .NET", "Java / J2EE", "SQL Server / Oracle", "HTML / JS / CSS", "Web Services (REST/SOAP)"]
     }
 ];
 
@@ -161,7 +156,6 @@ const Navbar = () => {
         <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-stone-950/90 backdrop-blur-lg border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 <a href="#" className="text-xl font-bold tracking-tighter text-white flex items-center gap-3 group">
-                    {/* LOGO */}
                     <div className="w-10 h-10 bg-gradient-to-tr from-orange-600 to-rose-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-orange-900/20 group-hover:scale-105 transition-transform">
                         V.
                     </div>
@@ -171,7 +165,6 @@ const Navbar = () => {
                 <div className="hidden md:flex items-center gap-10">
                     <NavLink href="#projects">Architecture</NavLink>
                     <NavLink href="#expertise">Tech Stack</NavLink>
-                    {/* RENAMED LINK */}
                     <NavLink href="#experience">Professional Experience</NavLink>
                     <a href="#contact" className="px-6 py-2.5 text-sm font-semibold text-stone-950 bg-stone-100 hover:bg-white rounded-full transition-all transform hover:-translate-y-0.5 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                         Contact
@@ -194,7 +187,6 @@ const Navbar = () => {
                         <div className="flex flex-col p-6 gap-6">
                             <NavLink href="#projects" onClick={() => setIsOpen(false)}>Architecture</NavLink>
                             <NavLink href="#expertise" onClick={() => setIsOpen(false)}>Tech Stack</NavLink>
-                            {/* RENAMED LINK IN MOBILE MENU */}
                             <NavLink href="#experience" onClick={() => setIsOpen(false)}>Professional Experience</NavLink>
                             <NavLink href="#contact" onClick={() => setIsOpen(false)}>Contact</NavLink>
                         </div>
@@ -245,30 +237,21 @@ const Hero = () => {
                     </div>
                 </motion.div>
 
-                {/* --- PHOTO SECTION (FIXED CENTER ALIGNMENT) --- */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1, delay: 0.2 }}
-                    // ADDED: flex justify-center to force centering in the column
                     className="hidden md:flex justify-center items-center relative"
                 >
-                    {/* Container limits width but keeps circle shape */}
                     <div className="relative w-full max-w-[450px] aspect-square">
-                        
-                        {/* The Photo Circle */}
                         <div className="absolute inset-0 rounded-full overflow-hidden border-4 border-stone-800 shadow-2xl z-20 group">
-                            {/* IMAGE LOGIC: object-cover fills the circle, object-center focuses on the face */}
                             <img
-                                src="/profile.jpg" // REPLACE THIS WITH YOUR FILENAME
+                                src="/profile.jpg" 
                                 alt="Venkata Jarugula"
                                 className="w-full h-full object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-500 transform hover:scale-105"
                             />
-                             {/* Orange Tint Overlay (Fades on Hover) */}
                              <div className="absolute inset-0 bg-orange-500/10 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-500"></div>
                         </div>
-
-                        {/* Decorative Spinning Rings (Centered Behind) */}
                         <div className="absolute inset-[-20px] -z-10 border border-stone-800 rounded-full opacity-30 animate-[spin_20s_linear_infinite]"></div>
                         <div className="absolute inset-[20px] -z-10 border border-orange-500/20 rounded-full opacity-40 animate-[spin_15s_linear_infinite_reverse]"></div>
                     </div>
@@ -319,7 +302,6 @@ const Projects = () => {
                                 <p className="text-stone-400 text-lg leading-relaxed font-light">
                                     {project.description}
                                 </p>
-                                {/* LINKED BUTTON */}
                                 <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-orange-500 font-bold hover:text-orange-400 transition-colors">
                                     View Technology Stack <ArrowRight size={16} />
                                 </a>
@@ -400,7 +382,7 @@ const Experience = () => {
             <div className="max-w-6xl mx-auto px-6">
                 <SectionHeader
                     title="Career History"
-                    subtitle="Professional Experience" // RENAMED SUBTITLE
+                    subtitle="Professional Experience"
                     align="center"
                 />
 
@@ -419,7 +401,6 @@ const Experience = () => {
                                     {exp.description}
                                 </p>
                                 
-                                {/* SDLC HIGHLIGHTS */}
                                 <div className="mb-6 space-y-3 bg-stone-900/30 p-6 rounded-xl border border-stone-800/50">
                                     {exp.highlights.map((point, i) => (
                                         <div key={i} className="flex gap-3 text-stone-400 text-sm leading-relaxed">
@@ -479,20 +460,24 @@ const Contact = () => {
         e.preventDefault();
         setFormStatus("submitting");
         const formData = new FormData(e.target);
+        
         try {
             // IMPORTANT: REPLACE WITH YOUR ACTUAL FORMSPREE ID
-            const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", { 
+            const response = await fetch("https://formspree.io/f/mqajawjn", { 
                 method: "POST",
                 body: formData,
                 headers: { 'Accept': 'application/json' }
             });
+            
             if (response.ok) {
                 setFormStatus("success");
                 e.target.reset();
                 setTimeout(() => {
                     setShowForm(false);
                     setFormStatus("idle");
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }, 3000);
+
             } else {
                 setFormStatus("error");
             }
@@ -518,13 +503,13 @@ const Contact = () => {
                         <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20">
                             <button 
                                 onClick={() => setShowForm(true)}
-                                className="px-10 py-5 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-full transition-all transform hover:-translate-y-1 shadow-lg shadow-orange-900/20 flex items-center justify-center gap-2"
+                                className="relative z-20 px-10 py-5 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-full transition-all transform hover:-translate-y-1 shadow-lg shadow-orange-900/20 flex items-center justify-center gap-2"
                             >
                                 <Mail size={20} /> Discuss Automation
                             </button>
                             <button 
                                 onClick={handleCopy}
-                                className="px-10 py-5 bg-stone-900 border border-stone-800 hover:bg-stone-800 text-white font-medium rounded-full transition-all w-48"
+                                className="relative z-20 px-10 py-5 bg-stone-900 border border-stone-800 hover:bg-stone-800 text-white font-medium rounded-full transition-all w-48"
                             >
                                 {copied ? "Copied!" : "Copy Email"}
                             </button>
@@ -533,19 +518,21 @@ const Contact = () => {
                         <motion.div 
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="max-w-lg mx-auto mb-20 text-left bg-stone-900/50 p-8 rounded-3xl border border-stone-800 backdrop-blur-md"
+                            className="max-w-lg mx-auto mb-20 text-left bg-stone-900/50 p-8 rounded-3xl border border-stone-800 backdrop-blur-md relative z-30"
                         >
                             <div className="flex justify-between items-center mb-6">
                                 <h3 className="text-xl font-bold text-white">Project Details</h3>
                                 <button onClick={() => setShowForm(false)} className="text-stone-500 hover:text-white"><X size={20}/></button>
                             </div>
+                            
+                            {/* SUCCESS MESSAGE */}
                             {formStatus === "success" ? (
                                 <div className="text-center py-12">
                                     <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-green-500">
-                                        <Bot size={32} />
+                                        <CheckCircle size={32} />
                                     </div>
-                                    <h4 className="text-2xl font-bold text-white mb-2">Bot Dispatched!</h4>
-                                    <p className="text-stone-400">I will review your inquiry shortly.</p>
+                                    <h4 className="text-2xl font-bold text-white mb-2">Received your message!</h4>
+                                    <p className="text-stone-400">Will get back in few minutes.</p>
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -561,6 +548,11 @@ const Contact = () => {
                                         <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Message</label>
                                         <textarea name="message" rows="3" required disabled={formStatus === "submitting"} className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors disabled:opacity-50" placeholder="Tell me about your automation needs..."></textarea>
                                     </div>
+                                    
+                                    {formStatus === "error" && (
+                                        <p className="text-red-500 text-sm text-center">Something went wrong. Please check your Formspree ID.</p>
+                                    )}
+
                                     <button type="submit" disabled={formStatus === "submitting"} className="w-full py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 disabled:bg-stone-800 disabled:cursor-not-allowed">
                                         {formStatus === "submitting" ? <>Processing...</> : <>Send Message</>}
                                     </button>
