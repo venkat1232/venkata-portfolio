@@ -3,90 +3,92 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Menu, X, ArrowRight, Github, Linkedin, Twitter, Dribbble, Mail, Terminal, Cpu, Users, ChevronDown, ExternalLink, Bot, Workflow, FileJson, Layers, Database } from 'lucide-react';
 
-// --- OPTIMIZED RPA ARCHITECT DATA ---
+// --- OPTIMIZED DATA BASED ON RESUME ---
 
 const PERSONAL_INFO = {
     name: "Venkata Jarugula",
     title: "Principal RPA Architect & AI Strategist",
-    tagline: "Orchestrating the digital workforce. 15+ Years of SDLC & Intelligent Automation.",
+    tagline: "Orchestrating the digital workforce. 12+ Years of IT & 9+ Years of RPA Experience.",
     about: "I don't just build bots; I architect enterprise ecosystems. With deep expertise in UiPath, Blue Prism, Automation Anywhere, and Power Automate, I lead Centers of Excellence (CoE) that govern the full automation lifecycle from discovery to disaster recovery.",
     email: "hire@vkjarugula.com",
     location: "Kansas City, MO",
-    keywords: "RPA Architect, UiPath, Blue Prism, Automation Anywhere, Power Automate, CoE Lead, SDLC, GenAI, Document Understanding, Process Mining"
+    keywords: "RPA Architect, UiPath, Blue Prism, Automation Anywhere, Power Automate, CoE Lead, SDLC, GenAI, Power Apps, Process Mining, .NET, Java"
 };
 
+// RESTRUCTURED EXPERIENCE BASED ON RESUME
 const EXPERIENCE = [
     {
         id: 1,
-        role: "Principal Intelligent Automation Architect",
-        company: "Global FinCorp (CoE Lead)",
-        period: "2019 — Present",
-        description: "Leading the enterprise automation strategy using UiPath and Power Automate. Responsible for the end-to-end SDLC governance of 400+ production robots.",
+        role: "RPA Lead & Architect",
+        company: "Multiple Clients (Banking, Insurance, Healthcare)",
+        period: "2016 — Present",
+        description: "Leading end-to-end RPA implementations using Blue Prism and UiPath. Responsible for infrastructure setup, CoE governance, team leadership, and solution design.",
         highlights: [
-            "Architecture: Designed a hybrid infrastructure using UiPath Automation Cloud and Power Automate Desktop (PAD) for seamless unattended execution.",
-            "New Tech: Integrated UiPath Autopilot and Clipboard AI to accelerate PDD creation and citizen development.",
-            "SDLC Governance: Enforced strict tollgates (Discovery -> Design -> Develop -> UAT -> Hypercare). Implemented CI/CD pipelines using Azure DevOps for automated code quality checks.",
-            "GenAI: Deployed 'Document Understanding' models coupled with OpenAI to process unstructured contracts."
+            "End-to-End Delivery: Managed the full SDLC for automation projects, from defining requirements in Solution Design Documents (SDD) to production deployment and support.",
+            "Leadership: Led cross-functional teams including Platform Engineering, Developers, Business Analysts, and Production Controllers.",
+            "Infrastructure: Experienced in setting up and maintaining robust Blue Prism and UiPath infrastructures for global clients.",
+            "Advanced RPA: Expertise in Blue Prism Work Queues, managing robot workloads, surface automation, and handling complex exceptions."
         ],
-        tech: ["UiPath", "Power Automate", "Azure DevOps", "GenAI"]
+        tech: ["Blue Prism", "UiPath", "SQL Server 2014", "SQL Server 2018", "Infrastructure", "Leadership", "SDLC"]
     },
     {
         id: 2,
-        role: "Sr. RPA Solution Architect",
-        company: "Nexus Logistics",
-        period: "2015 — 2019",
-        description: "Managed the migration of legacy scripts to Automation Anywhere A360 and Blue Prism. Focused on high-availability architecture and disaster recovery.",
+        role: "Sr. RPA Developer",
+        company: "IT Services Company",
+        period: "2013 — 2016",
+        description: "Hands-on development and deployment of automation processes in an Agile environment. Focused on building robust, scalable bots and handling complex business logic.",
         highlights: [
-            "Blue Prism: Architected a decoupled 'producer-consumer' workload model using Blue Prism Work Queues to handle 50k daily transactions.",
-            "Automation Anywhere: Led the migration from v11 to Automation 360 (Cloud), reducing infrastructure costs by 40%.",
-            "SDLC Phase: Specialized in the 'Design' phase, creating comprehensive Solution Design Documents (SDD) and Object Design Instructions (ODI).",
-            "Testing: Established automated testing frameworks to validate bot logic against SAP and Mainframe updates before production release."
+            "Bot Development: Designed, developed, and tested bots for mainframe, web, and Windows applications using various spying methods (Win32, Accessibility, Region).",
+            "Process Optimization: Worked on defining Available Processes and Resources in the Control Room for efficient task execution.",
+            "Agile Methodology: Actively participated in Agile development cycles, ensuring timely delivery of automation sprints.",
+            "Multi-Platform: Gained working knowledge of Automation Anywhere and OpenSpan alongside deep Blue Prism expertise."
         ],
-        tech: ["Blue Prism", "Automation Anywhere", "SQL", "Citrix"]
+        tech: ["Blue Prism", "Automation Anywhere", "OpenSpan", "Agile", "C#"]
     },
     {
         id: 3,
-        role: "Lead Automation Developer",
-        company: "Pixel Systems",
-        period: "2010 — 2015",
-        description: "Foundational automation role evolving from .NET scripting to early RPA adoption. Built the rigorous coding standards still used by the team today.",
+        role: "Software Engineer (.NET/Java)",
+        company: "Software Development Firm",
+        period: "2008 — 2013",
+        description: "Full-stack application development experience using a wide range of Microsoft and Java technologies before transitioning to RPA.",
         highlights: [
-            "Development: Hardened .NET and Python scripts for SAP GUI automation before RPA tools were mainstream.",
-            "SDLC Phase: Focused on 'Build' and 'Maintenance'. Created reusable component libraries (Logging, Error Handling, Credential Management).",
-            "Legacy Integration: Built custom connectors using VBA and VB.NET to bridge gaps between Oracle ERP and Excel macros.",
-            "Support: Managed L3 support for production bots, reducing Mean Time to Resolution (MTTR) by defining clear exception handling categories (System vs. Business)."
+            ".NET Stack: Developed applications using C#.Net, ASP.NET, ADO.NET, Web Services, and MVC frameworks.",
+            "Java Stack: Experience in Enterprise web applications using Java/J2EE, Spring, Hibernate, JSP, and Web Services (SOAP/REST).",
+            "Database: Strong experience in designing relational database concepts, writing stored procedures, triggers, and views in Oracle and SQL Server.",
+            "Frontend & Tools: Designed UIs using HTML, CSS, JS, Bootstrap, and AngularJS. Proficient with build tools (ANT, Maven) and version control (Git, SVN)."
         ],
-        tech: ["VB.NET", "Python", "VBA", "SAP Scripting"]
+        tech: ["C#.NET", "Java/J2EE", "SQL Server", "Oracle", "HTML/JS"]
     }
 ];
 
+// UPDATED PROJECTS WITH END-TO-END FOCUS AND FIXED LINK
 const PROJECTS = [
     {
         id: 1,
-        title: "Finance Reconciliation Engine",
+        title: "End-to-End Financial Reconciliation Engine",
         category: "UiPath & AI Center",
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
-        description: "A massive unattended automation handling $50M in daily reconciliations. Uses UiPath AI Center for matching logic and Action Center for human-in-the-loop validation.",
-        // LINK TO REAL UIPATH FINANCE ARTICLE
-        link: "https://www.uipath.com/solutions/department/finance-and-accounting-automation" 
+        description: "Led the full lifecycle from PDD to Hypercare of a massive unattended automation. Reconciles $50M+ daily. Features AI-powered matching and human-in-the-loop validation.",
+        // Working link to UiPath Finance solutions
+        link: "https://www.uipath.com/solutions/industry/banking-and-financial-services"
     },
     {
         id: 2,
-        title: "Invoice Hyperautomation",
+        title: "Cognitive Invoice Processing Pipeline",
         category: "Power Automate & AI Builder",
         image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&q=80&w=800",
-        description: "End-to-end AP automation. Uses Power Automate Process Mining to identify bottlenecks and AI Builder to extract data from multi-format invoices with 99% accuracy.",
-        // LINK TO REAL MICROSOFT AI BUILDER DOCS
-        link: "https://learn.microsoft.com/en-us/ai-builder/form-processing-model-overview"
+        description: "Managed the end-to-end implementation of an intelligent AP automation solution. Utilizes Process Mining for discovery and AI models for 99% accurate data extraction.",
+        // Working link to Microsoft Power Automate AI Builder
+        link: "https://powerautomate.microsoft.com/en-us/ai-builder/"
     },
     {
         id: 3,
-        title: "IT Ops Self-Healing Bot",
+        title: "IT Ops Self-Healing & Ticketing System",
         category: "Automation Anywhere A360",
         image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
-        description: "IT Service Management automation. Monitors server health via A360, performs disk cleanups, restarts services, and updates tickets in ServiceNow automatically.",
-        // LINK TO REAL AUTOMATION ANYWHERE IT OPS PAGE
-        link: "https://www.automationanywhere.com/solutions/it-operations"
+        description: "Designed and deployed a full-stack IT automation framework. Monitors system health, performs auto-remediation, and manages ticket lifecycles in ServiceNow.",
+        // FIXED: Replaced broken link with a valid A360 solutions link
+        link: "https://www.automationanywhere.com/products/automation-360"
     }
 ];
 
@@ -101,13 +103,13 @@ const SKILL_CATEGORIES = [
         id: 'arch',
         title: "Architecture & SDLC",
         icon: Layers,
-        skills: ["REFramework / Dispatcher-Performer", "PDD / SDD / ODI Documentation", "CI/CD Pipelines (Azure DevOps)", "Disaster Recovery Strategy", "License Management"]
+        skills: ["REFramework / Dispatcher-Performer", "PDD / SDD / ODI Documentation", "CI/CD Pipelines (Azure DevOps)", "Disaster Recovery Strategy", "Infrastructure Setup"]
     },
     {
         id: 'tech',
-        title: "Advanced Tech",
+        title: "Development & Tech",
         icon: Database,
-        skills: ["GenAI / LLM Integration", "Process Mining", "Document Understanding (OCR)", "Python & C# .NET", "SQL / Stored Procedures", "API (REST/SOAP)"]
+        skills: ["C# .NET / ASP.NET", "Java / J2EE (Spring/Hibernate)", "SQL Server / Oracle DB", "Web Services (REST/SOAP)", "HTML/CSS/JS"]
     }
 ];
 
@@ -120,7 +122,7 @@ const SectionHeader = ({ title, subtitle, align = "left" }) => (
             <span className="text-orange-500 font-medium tracking-wider uppercase text-sm">{title}</span>
             {align === "center" && <div className="h-[1px] w-12 bg-orange-500/50"></div>}
         </div>
-        <motion.h2 
+        <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -133,8 +135,8 @@ const SectionHeader = ({ title, subtitle, align = "left" }) => (
 );
 
 const NavLink = ({ href, children, onClick }) => (
-    <a 
-        href={href} 
+    <a
+        href={href}
         onClick={onClick}
         className="text-sm font-medium text-stone-400 hover:text-orange-400 transition-colors duration-300 tracking-wide cursor-pointer relative group"
     >
@@ -169,7 +171,8 @@ const Navbar = () => {
                 <div className="hidden md:flex items-center gap-10">
                     <NavLink href="#projects">Architecture</NavLink>
                     <NavLink href="#expertise">Tech Stack</NavLink>
-                    <NavLink href="#experience">SDLC Journey</NavLink>
+                    {/* RENAMED LINK */}
+                    <NavLink href="#experience">Professional Experience</NavLink>
                     <a href="#contact" className="px-6 py-2.5 text-sm font-semibold text-stone-950 bg-stone-100 hover:bg-white rounded-full transition-all transform hover:-translate-y-0.5 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                         Contact
                     </a>
@@ -182,7 +185,7 @@ const Navbar = () => {
 
             <AnimatePresence>
                 {isOpen && (
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
@@ -191,7 +194,8 @@ const Navbar = () => {
                         <div className="flex flex-col p-6 gap-6">
                             <NavLink href="#projects" onClick={() => setIsOpen(false)}>Architecture</NavLink>
                             <NavLink href="#expertise" onClick={() => setIsOpen(false)}>Tech Stack</NavLink>
-                            <NavLink href="#experience" onClick={() => setIsOpen(false)}>SDLC Journey</NavLink>
+                            {/* RENAMED LINK IN MOBILE MENU */}
+                            <NavLink href="#experience" onClick={() => setIsOpen(false)}>Professional Experience</NavLink>
                             <NavLink href="#contact" onClick={() => setIsOpen(false)}>Contact</NavLink>
                         </div>
                     </motion.div>
@@ -210,7 +214,7 @@ const Hero = () => {
             </div>
 
             <div className="max-w-7xl mx-auto px-6 relative z-10 w-full grid md:grid-cols-2 gap-12 items-center">
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
@@ -219,19 +223,19 @@ const Hero = () => {
                         <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
                         <span className="text-xs font-medium text-stone-300 uppercase tracking-widest">Open for Consulting</span>
                     </div>
-                    
+
                     <h1 className="text-5xl lg:text-7xl font-sans font-bold leading-[1.05] text-white mb-8 tracking-tight">
                         Architecting the <br/>
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-rose-400 to-orange-400 animate-gradient bg-300%">Digital Workforce.</span>
                     </h1>
 
                     <p className="text-xl text-stone-400 mb-10 max-w-lg leading-relaxed font-light">
-                        {PERSONAL_INFO.tagline} 15 years of bridging the gap between complex business processes and resilient, scalable automation.
+                        {PERSONAL_INFO.tagline} I bridge the gap between complex business processes and resilient, scalable automation.
                     </p>
 
                     <div className="flex flex-wrap gap-6">
-                        <a 
-                            href="#projects" 
+                        <a
+                            href="#projects"
                             className="group relative px-8 py-4 bg-stone-100 text-stone-950 font-bold rounded-full overflow-hidden transition-all hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                         >
                             <span className="relative z-10 flex items-center gap-2">
@@ -241,30 +245,28 @@ const Hero = () => {
                     </div>
                 </motion.div>
 
+                {/* PHOTO SECTION - REPLACED ABSTRACT VISUAL */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1, delay: 0.2 }}
                     className="hidden md:block relative"
                 >
-                     <div className="relative w-full aspect-square max-w-lg mx-auto">
-                        <div className="absolute inset-0 border border-stone-800 rounded-full opacity-20 animate-[spin_10s_linear_infinite]"></div>
-                        <div className="absolute inset-10 border border-orange-500/20 rounded-full opacity-30 animate-[spin_15s_linear_infinite_reverse]"></div>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                             <div className="p-8 bg-stone-900/50 backdrop-blur-xl rounded-2xl border border-stone-800 shadow-2xl">
-                                <div className="flex gap-4 mb-4">
-                                    <div className="w-3 h-3 rounded-full bg-rose-500"></div>
-                                    <div className="w-3 h-3 rounded-full bg-orange-500"></div>
-                                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                                </div>
-                                <div className="space-y-2 font-mono text-sm text-stone-400">
-                                    <div className="flex"><span className="text-rose-400 mr-2">const</span> rpaCoE = <span className="text-orange-400 ml-2">new</span> Architect();</div>
-                                    <div className="pl-4">rpaCoE.orchestrate(<span className="text-green-400">'UiPath'</span>, <span className="text-green-400">'PowerAutomate'</span>);</div>
-                                    <div className="pl-4">rpaCoE.scale(<span className="text-blue-400">GLOBAL</span>);</div>
-                                </div>
-                             </div>
+                    <div className="relative w-full aspect-square max-w-lg mx-auto z-10">
+                        {/* IMPORTANT: REPLACE THE SRC BELOW WITH THE PATH TO YOUR PHOTO IN THE PUBLIC FOLDER */}
+                        <div className="aspect-square rounded-full overflow-hidden border-4 border-stone-800 shadow-2xl relative z-20 group">
+                            <img
+                                src="/profile.jpg" // <--- UPDATE THIS PATH
+                                alt="Venkata Jarugula"
+                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                            />
+                             <div className="absolute inset-0 bg-orange-500/10 mix-blend-overlay pointer-events-none"></div>
                         </div>
-                     </div>
+
+                        {/* Decorative elements behind the photo */}
+                        <div className="absolute inset-0 -z-10 border border-stone-800 rounded-full opacity-30 animate-[spin_20s_linear_infinite]"></div>
+                        <div className="absolute inset-10 -z-10 border border-orange-500/20 rounded-full opacity-40 animate-[spin_15s_linear_infinite_reverse]"></div>
+                    </div>
                 </motion.div>
             </div>
         </section>
@@ -275,14 +277,14 @@ const Projects = () => {
     return (
         <section id="projects" className="py-32 bg-stone-900/20">
             <div className="max-w-7xl mx-auto px-6">
-                <SectionHeader 
-                    title="Selected Automations" 
+                <SectionHeader
+                    title="Selected Automations"
                     subtitle="Enterprise-scale bots delivering measurable ROI."
                 />
 
                 <div className="space-y-24">
                     {PROJECTS.map((project, index) => (
-                        <motion.div 
+                        <motion.div
                             key={project.id}
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -292,9 +294,9 @@ const Projects = () => {
                         >
                             <div className="lg:w-2/3 w-full group cursor-pointer">
                                 <div className="aspect-video rounded-3xl overflow-hidden bg-stone-900 border border-stone-800 relative shadow-2xl">
-                                    <img 
-                                        src={project.image} 
-                                        alt={project.title} 
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
                                         className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100 grayscale group-hover:grayscale-0"
                                     />
                                     <div className="absolute inset-0 bg-stone-950/20 group-hover:bg-transparent transition-colors duration-500"></div>
@@ -333,21 +335,21 @@ const Expertise = () => {
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="grid md:grid-cols-2 gap-16 items-start">
                     <div>
-                        <SectionHeader 
-                            title="Capabilities" 
-                            subtitle="A comprehensive automation toolkit built over 15 years."
+                        <SectionHeader
+                            title="Capabilities"
+                            subtitle="A comprehensive automation toolkit built over 11+ years."
                         />
                         <p className="text-stone-400 text-lg leading-relaxed mb-8 font-light max-w-md">
                             True architecture goes beyond recording macros. I design resilient systems that prioritize stability, compliance, and scalable exception handling using the latest frameworks.
                         </p>
                         <div className="grid grid-cols-2 gap-8 pt-8">
                              <div>
-                                <div className="text-4xl font-bold text-white mb-2">15+</div>
-                                <div className="text-sm text-stone-500 uppercase tracking-wider">Years SDLC</div>
+                                <div className="text-4xl font-bold text-white mb-2">11+</div>
+                                <div className="text-sm text-stone-500 uppercase tracking-wider">Years IT Exp</div>
                              </div>
                              <div>
-                                <div className="text-4xl font-bold text-white mb-2">400+</div>
-                                <div className="text-sm text-stone-500 uppercase tracking-wider">Bots Deployed</div>
+                                <div className="text-4xl font-bold text-white mb-2">7+</div>
+                                <div className="text-sm text-stone-500 uppercase tracking-wider">Years RPA Exp</div>
                              </div>
                         </div>
                     </div>
@@ -391,9 +393,9 @@ const Experience = () => {
     return (
         <section id="experience" className="py-32 relative border-t border-stone-900">
             <div className="max-w-6xl mx-auto px-6">
-                <SectionHeader 
-                    title="Career History" 
-                    subtitle="SDLC & Leadership Journey"
+                <SectionHeader
+                    title="Career History"
+                    subtitle="Professional Experience" // RENAMED SUBTITLE
                     align="center"
                 />
 
@@ -473,6 +475,7 @@ const Contact = () => {
         setFormStatus("submitting");
         const formData = new FormData(e.target);
         try {
+            // IMPORTANT: REPLACE WITH YOUR ACTUAL FORMSPREE ID
             const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", { 
                 method: "POST",
                 body: formData,
@@ -589,7 +592,7 @@ const App = () => {
         "name": PERSONAL_INFO.name,
         "jobTitle": PERSONAL_INFO.title,
         "url": "https://vkjarugula.com",
-        "knowsAbout": ["Robotic Process Automation", "UiPath", "Blue Prism", "Automation Anywhere", "Intelligent Automation", "Hyperautomation", "C#", "Python"],
+        "knowsAbout": ["Robotic Process Automation", "UiPath", "Blue Prism", "Automation Anywhere", "Intelligent Automation", "Hyperautomation", "C#", "Java", ".NET"],
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Kansas City",
@@ -602,7 +605,7 @@ const App = () => {
             <div className="bg-stone-950 text-stone-200 min-h-screen font-sans selection:bg-orange-500/30 selection:text-orange-200 overflow-x-hidden">
                 <Helmet>
                     <title>{`${PERSONAL_INFO.name} | ${PERSONAL_INFO.title}`}</title>
-                    <meta name="description" content={`${PERSONAL_INFO.title} with 15+ years in automation. Expert in UiPath, Blue Prism, CoE Strategy, and Intelligent Automation.`} />
+                    <meta name="description" content={`${PERSONAL_INFO.title} with 11+ years in IT and 7+ years in RPA. Expert in Blue Prism, UiPath, and end-to-end automation delivery.`} />
                     <meta name="keywords" content={PERSONAL_INFO.keywords} />
                     <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
                 </Helmet>
