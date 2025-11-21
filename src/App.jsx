@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight, Github, Linkedin, Twitter, Dribbble, Mail, Terminal, PenTool, Users, ChevronDown, ExternalLink } from 'lucide-react';
 
 // --- MOCK DATA ---
@@ -7,7 +7,7 @@ const PERSONAL_INFO = {
     name: "Venkata Jarugula",
     title: "Product Architect",
     tagline: "Building resilient systems with human-centric design.",
-    about: "With more than a decades of experience, I bridge the gap between conceptual design and technical execution.",
+    about: "With more than a decade of experience, I bridge the gap between conceptual design and technical execution.",
     email: "hire@vkjarugula.com",
     location: "Kansas City, MO"
 };
@@ -134,8 +134,35 @@ const Navbar = () => {
     return (
         <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-stone-950/90 backdrop-blur-lg border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                <a href="#" className="text-xl font-bold tracking-tighter text-white flex items-center gap-2 group">
-                    <div className="w-10 h-10 bg-gradient-to-tr from-orange-600 to-rose-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-orange-900/20 group-hover:scale-105 transition-transform">V.</div>
+                <a href="#" className="text-xl font-bold tracking-tighter text-white flex items-center gap-3 group">
+                    {/* SVG LOGO START - Updated with your centered V. */}
+                    <div className="w-10 h-10 group-hover:scale-105 transition-transform duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="-12 -12 64 64" fill="none">
+                            <defs>
+                                <linearGradient id="grad_v" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" stopColor="#ea580c"/>
+                                    <stop offset="100%" stopColor="#e11d48"/>
+                                </linearGradient>
+                                <filter id="shadow_v" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
+                                    <feOffset dx="0" dy="4" result="offsetblur"/>
+                                    <feFlood floodColor="#7c2d12" floodOpacity="0.2"/>
+                                    <feComposite in2="offsetblur" operator="in"/>
+                                    <feMerge>
+                                        <feMergeNode/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            <g filter="url(#shadow_v)">
+                                <rect x="0" y="0" width="40" height="40" rx="12" fill="url(#grad_v)" />
+                                {/* Corrected Centering: x="20" y="20" */}
+                                <text x="20" y="20" dy="1" dominantBaseline="central" textAnchor="middle" fill="white" fontWeight="bold" fontFamily="Arial, sans-serif" fontSize="22">V.</text>
+                            </g>
+                        </svg>
+                    </div>
+                    {/* SVG LOGO END */}
+                    
                     <span className={`font-bold transition-opacity duration-300 ${scrolled ? 'opacity-100' : 'opacity-0 md:opacity-100'}`}>Venkata</span>
                 </a>
 
@@ -191,7 +218,7 @@ const Hero = () => {
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-stone-900/50 border border-stone-800 mb-8 backdrop-blur-sm hover:border-orange-500/30 transition-colors">
                         <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-                        <span className="text-xs font-medium text-stone-300 uppercase tracking-widest">Available for 2024</span>
+                        <span className="text-xs font-medium text-stone-300 uppercase tracking-widest">Available for 2026</span>
                     </div>
                     
                     <h1 className="text-6xl lg:text-8xl font-sans font-bold leading-[1.05] text-white mb-8 tracking-tight">
@@ -423,13 +450,10 @@ const Contact = () => {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {
-        // Fallback for copying in environments where navigator.clipboard might be blocked
         try {
-            // Try modern API first
             navigator.clipboard.writeText(PERSONAL_INFO.email).then(() => {
                  setCopied(true);
             }).catch(() => {
-                 // Fallback
                  const textArea = document.createElement("textarea");
                  textArea.value = PERSONAL_INFO.email;
                  document.body.appendChild(textArea);
@@ -489,23 +513,48 @@ const Contact = () => {
                                 <h3 className="text-xl font-bold text-white">Project Details</h3>
                                 <button onClick={() => setShowForm(false)} className="text-stone-500 hover:text-white"><X size={20}/></button>
                             </div>
-                            <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); alert('Thank you! This is a demo form.'); setShowForm(false); }}>
+                            {/* --- FORMSPREE UPDATE START --- */}
+                            {/* IMPORTANT: Replace 'YOUR_FORMSPREE_ID' below with your actual Formspree ID */}
+                            <form 
+                                action="https://formspree.io/f/mqajawjn" 
+                                method="POST" 
+                                className="space-y-4"
+                            >
                                 <div>
                                     <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Name</label>
-                                    <input type="text" className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="Your Name" />
+                                    <input 
+                                        type="text" 
+                                        name="name" 
+                                        required
+                                        className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors" 
+                                        placeholder="Your Name" 
+                                    />
                                 </div>
                                 <div>
                                     <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Email</label>
-                                    <input type="email" className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="your@email.com" />
+                                    <input 
+                                        type="email" 
+                                        name="email" 
+                                        required
+                                        className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors" 
+                                        placeholder="your@email.com" 
+                                    />
                                 </div>
                                 <div>
                                     <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Message</label>
-                                    <textarea rows="3" className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors" placeholder="Tell me about your project..."></textarea>
+                                    <textarea 
+                                        name="message" 
+                                        rows="3" 
+                                        required
+                                        className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors" 
+                                        placeholder="Tell me about your project..."
+                                    ></textarea>
                                 </div>
-                                <button className="w-full py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl transition-all">
+                                <button type="submit" className="w-full py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl transition-all">
                                     Send Message
                                 </button>
                             </form>
+                            {/* --- FORMSPREE UPDATE END --- */}
                         </motion.div>
                     )}
 
@@ -535,7 +584,7 @@ const Contact = () => {
 const Footer = () => (
     <footer className="py-10 border-t border-stone-900 bg-stone-950 text-center relative z-10">
         <p className="text-stone-600 text-sm font-medium">
-            © {new Date().getFullYear()} Venkata. Designed & Built.
+            © {new Date().getFullYear()} Designed & Built by Venkata Jarugula.
         </p>
     </footer>
 );
