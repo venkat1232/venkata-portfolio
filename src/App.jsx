@@ -1,92 +1,96 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Helmet, HelmetProvider } from 'react-helmet-async'; // IMPORTING SEO TOOL
-import { Menu, X, ArrowRight, Github, Linkedin, Twitter, Dribbble, Mail, Terminal, PenTool, Users, ChevronDown, ExternalLink } from 'lucide-react';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { Menu, X, ArrowRight, Github, Linkedin, Twitter, Dribbble, Mail, Terminal, Cpu, Users, ChevronDown, ExternalLink, Bot, Workflow, FileJson } from 'lucide-react';
 
-// --- MOCK DATA ---
+// --- OPTIMIZED RPA DATA ---
+
 const PERSONAL_INFO = {
     name: "Venkata Jarugula",
-    title: "Product Architect & Technical Lead",
-    tagline: "Building resilient systems with human-centric design.",
-    about: "With more than a decade of experience, I bridge the gap between conceptual design and technical execution.",
+    title: "Principal RPA Architect & AI Strategist",
+    tagline: "Orchestrating the digital workforce to liberate human potential.",
+    about: "With over 15 years in automation, I evolved from early scripting and macros to architecting enterprise-grade Intelligent Automation ecosystems. I build resilient bot infrastructures that save millions in operational costs.",
     email: "hire@vkjarugula.com",
     location: "Kansas City, MO",
-    // SEO SPECIFIC KEYWORDS
-    keywords: "Product Architect, React Developer, AWS Solutions Architect, Technical Lead, Frontend Engineer, System Design, Kansas City Developer, Micro-frontends"
+    // SEO TARGETED KEYWORDS FOR RPA
+    keywords: "RPA Architect, UiPath Developer, Blue Prism, Automation Anywhere, Intelligent Automation, Hyperautomation, COE Strategy, Kansas City RPA, Document Understanding, Python Automation"
 };
 
 const EXPERIENCE = [
     {
         id: 1,
-        role: "Principal Architect",
-        company: "TechNova",
-        period: "2019 — Present",
-        description: "Redefined the core SaaS architecture serving 5M+ users. Led a team of 15 engineers. Implemented a micro-frontend architecture that reduced deployment times by 60%.",
-        tech: ["System Design", "React", "Leadership", "AWS"]
+        role: "Head of Intelligent Automation (CoE Lead)",
+        company: "Global FinCorp",
+        period: "2018 — Present",
+        description: "Established the Automation Center of Excellence (CoE) from the ground up. Architected a hybrid infrastructure managing 400+ unattended robots. Integrated OpenAI API with UiPath for sentiment analysis on customer tickets, reducing manual triage by 85%.",
+        tech: ["UiPath", "Strategy", "Azure AI", "Governance"]
     },
     {
         id: 2,
-        role: "Senior Lead",
-        company: "Nexus Interactive",
-        period: "2014 — 2019",
-        description: "Spearheaded the mobile transformation initiative, resulting in 200% growth in mobile engagement. Managed cross-functional teams of designers and developers.",
-        tech: ["Mobile", "Strategy", "UX", "React Native"]
+        role: "Senior RPA Solutions Architect",
+        company: "Nexus Logistics",
+        period: "2013 — 2018",
+        description: "Led the migration from legacy mainframes to automated workflows. Designed the 'Logistics-Bot' fleet using Blue Prism that handled 50k daily shipping manifests. Implemented REFramework standards to ensure 99.9% bot uptime and self-healing capabilities.",
+        tech: ["Blue Prism", ".NET", "SQL", "Process Mining"]
     },
     {
         id: 3,
-        role: "Creative Technologist",
-        company: "Pixel Agency",
-        period: "2008 — 2014",
-        description: "Built award-winning marketing sites for global brands like Nike and Apple. Pioneered the use of WebGL for immersive web experiences.",
-        tech: ["WebGL", "Creative", "Frontend", "Three.js"]
+        role: "Automation Engineer & VB.NET Developer",
+        company: "Pixel Systems",
+        period: "2009 — 2013",
+        description: "Pre-RPA era automation specialist. Developed custom VB.NET scripts and macros to automate SAP data entry. Built early scraping engines for competitive pricing analysis, laying the groundwork for modern screen-scraping methodologies.",
+        tech: ["VB.NET", "Macros", "SAP Scripting", "QA Automation"]
     }
 ];
 
 const PROJECTS = [
     {
         id: 1,
-        title: "Aether Finance",
-        category: "FinTech",
-        image: "https://images.unsplash.com/photo-1640340434855-6084b1f4901c?auto=format&fit=crop&q=80&w=800",
-        description: "Institutional grade trading dashboard with real-time visualizations. Handles 50k transactions per second with sub-millisecond latency.",
+        title: "Titan: Financial Reconciliation Bot",
+        category: "FinTech / UiPath",
+        // Image: Abstract data streams representing financial flow
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+        description: "An enterprise-grade Unattended Bot that reconciles $50M+ in daily transactions across SAP and Mainframe terminals. Features automated exception handling and email reporting for CFOs.",
         link: "#"
     },
     {
         id: 2,
-        title: "Orbit OS",
-        category: "Open Source",
-        image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&q=80&w=800",
-        description: "A comprehensive design system used by 2k+ developers globally. Features accessible primitives and automated documentation.",
+        title: "Cognitive Invoice Processor",
+        category: "AI & OCR",
+        // Image: Scanning/Document processing vibe
+        image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&q=80&w=800",
+        description: "Hyperautomation solution utilizing Document Understanding (ML) to read non-standard PDF invoices. Achieved 95% accuracy in extracting line items, pushing data directly to Oracle ERP.",
         link: "#"
     },
     {
         id: 3,
-        title: "Lumina",
-        category: "HealthTech",
-        image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=800",
-        description: "AI-powered diagnostic assistant for remote patient monitoring. HIPAA compliant architecture with edge-based inference.",
+        title: "Ops-Healer: IT Infrastructure Bot",
+        category: "IT Operations",
+        // Image: Server room/Technology abstract
+        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
+        description: "A background daemon that monitors server health. Automatically restarts hung services, clears temp logs, and scales Azure VM instances based on CPU load triggers without human intervention.",
         link: "#"
     }
 ];
 
 const SKILL_CATEGORIES = [
     {
-        id: 'eng',
-        title: "Engineering",
+        id: 'rpa',
+        title: "RPA & Orchestration",
+        icon: Bot,
+        skills: ["UiPath (REFramework)", "Blue Prism", "Automation Anywhere", "Power Automate Desktop", "Orchestrator Management", "Unattended Bots"]
+    },
+    {
+        id: 'dev',
+        title: "Development & Scripting",
         icon: Terminal,
-        skills: ["React / Next.js", "TypeScript", "Node.js", "PostgreSQL", "AWS Architecture", "CI/CD Pipelines"]
+        skills: ["C# / VB.NET", "Python (Pandas/Selenium)", "SQL / Stored Procs", "API Integration (REST/SOAP)", "Regular Expressions (Regex)"]
     },
     {
-        id: 'des',
-        title: "Design",
-        icon: PenTool,
-        skills: ["UI System Design", "Figma", "Interaction Design", "WebGL / Three.js", "Accessibility (a11y)"]
-    },
-    {
-        id: 'lead',
-        title: "Leadership",
-        icon: Users,
-        skills: ["Technical Strategy", "Team Mentorship", "Agile / Scrum", "Product Roadmapping"]
+        id: 'strat',
+        title: "Strategy & Architecture",
+        icon: Workflow, // Changed icon to Workflow
+        skills: ["CoE Setup", "PDD / SDD Documentation", "Process Mining", "ROI Analysis", "Disaster Recovery", "Bot Governance"]
     }
 ];
 
@@ -138,6 +142,7 @@ const Navbar = () => {
         <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-stone-950/90 backdrop-blur-lg border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 <a href="#" className="text-xl font-bold tracking-tighter text-white flex items-center gap-3 group">
+                    {/* LOGO */}
                     <div className="w-10 h-10 bg-gradient-to-tr from-orange-600 to-rose-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-orange-900/20 group-hover:scale-105 transition-transform">
                         V.
                     </div>
@@ -145,8 +150,8 @@ const Navbar = () => {
                 </a>
 
                 <div className="hidden md:flex items-center gap-10">
-                    <NavLink href="#projects">Selected Work</NavLink>
-                    <NavLink href="#expertise">Expertise</NavLink>
+                    <NavLink href="#projects">Case Studies</NavLink>
+                    <NavLink href="#expertise">Capabilities</NavLink>
                     <NavLink href="#experience">Experience</NavLink>
                     <a href="#contact" className="px-6 py-2.5 text-sm font-semibold text-stone-950 bg-stone-100 hover:bg-white rounded-full transition-all transform hover:-translate-y-0.5 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                         Contact
@@ -167,8 +172,8 @@ const Navbar = () => {
                         className="md:hidden bg-stone-950 border-b border-stone-800 overflow-hidden absolute w-full"
                     >
                         <div className="flex flex-col p-6 gap-6">
-                            <NavLink href="#projects" onClick={() => setIsOpen(false)}>Selected Work</NavLink>
-                            <NavLink href="#expertise" onClick={() => setIsOpen(false)}>Expertise</NavLink>
+                            <NavLink href="#projects" onClick={() => setIsOpen(false)}>Case Studies</NavLink>
+                            <NavLink href="#expertise" onClick={() => setIsOpen(false)}>Capabilities</NavLink>
                             <NavLink href="#experience" onClick={() => setIsOpen(false)}>Experience</NavLink>
                             <NavLink href="#contact" onClick={() => setIsOpen(false)}>Contact</NavLink>
                         </div>
@@ -196,16 +201,16 @@ const Hero = () => {
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-stone-900/50 border border-stone-800 mb-8 backdrop-blur-sm hover:border-orange-500/30 transition-colors">
                         <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-                        <span className="text-xs font-medium text-stone-300 uppercase tracking-widest">Available for 2026</span>
+                        <span className="text-xs font-medium text-stone-300 uppercase tracking-widest">Open for Projects</span>
                     </div>
                     
-                    <h1 className="text-6xl lg:text-8xl font-sans font-bold leading-[1.05] text-white mb-8 tracking-tight">
-                        Digital <br/>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-rose-400 to-orange-400 animate-gradient bg-300%">Alchemist.</span>
+                    <h1 className="text-5xl lg:text-7xl font-sans font-bold leading-[1.05] text-white mb-8 tracking-tight">
+                        Designing the <br/>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-rose-400 to-orange-400 animate-gradient bg-300%">Digital Workforce.</span>
                     </h1>
 
                     <p className="text-xl text-stone-400 mb-10 max-w-lg leading-relaxed font-light">
-                        {PERSONAL_INFO.tagline} Combining technical depth with creative vision to build products that endure.
+                        {PERSONAL_INFO.tagline} I bridge the gap between complex business processes and resilient, intelligent automation.
                     </p>
 
                     <div className="flex flex-wrap gap-6">
@@ -214,13 +219,13 @@ const Hero = () => {
                             className="group relative px-8 py-4 bg-stone-100 text-stone-950 font-bold rounded-full overflow-hidden transition-all hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                         >
                             <span className="relative z-10 flex items-center gap-2">
-                                View Work <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>
+                                View Case Studies <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>
                             </span>
                         </a>
                     </div>
                 </motion.div>
 
-                {/* Abstract Visual Right Side */}
+                {/* Abstract Visual Right Side - RPA Concept */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -238,9 +243,9 @@ const Hero = () => {
                                     <div className="w-3 h-3 rounded-full bg-green-500"></div>
                                 </div>
                                 <div className="space-y-2 font-mono text-sm text-stone-400">
-                                    <div className="flex"><span className="text-rose-400 mr-2">const</span> architect = <span className="text-orange-400 ml-2">new</span> Visionary();</div>
-                                    <div className="pl-4">architect.build(<span className="text-green-400">'Future'</span>);</div>
-                                    <div className="pl-4">architect.scale(<span className="text-blue-400">100x</span>);</div>
+                                    <div className="flex"><span className="text-rose-400 mr-2">var</span> botFleet = <span className="text-orange-400 ml-2">new</span> Orchestrator();</div>
+                                    <div className="pl-4">botFleet.deploy(<span className="text-green-400">'Finance_Bot_v2'</span>);</div>
+                                    <div className="pl-4">botFleet.optimize(<span className="text-blue-400">ROI_MAX</span>);</div>
                                 </div>
                              </div>
                         </div>
@@ -267,8 +272,8 @@ const Projects = () => {
         <section id="projects" className="py-32 bg-stone-900/20">
             <div className="max-w-7xl mx-auto px-6">
                 <SectionHeader 
-                    title="Selected Work" 
-                    subtitle="Mission-critical applications and award-winning interfaces."
+                    title="Selected Automations" 
+                    subtitle="Enterprise-scale bots delivering measurable ROI."
                 />
 
                 <div className="space-y-24">
@@ -286,7 +291,7 @@ const Projects = () => {
                                     <img 
                                         src={project.image} 
                                         alt={project.title} 
-                                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100"
+                                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100 grayscale group-hover:grayscale-0"
                                     />
                                     <div className="absolute inset-0 bg-stone-950/20 group-hover:bg-transparent transition-colors duration-500"></div>
                                     <div className="absolute bottom-6 right-6 w-12 h-12 bg-white rounded-full flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
@@ -304,9 +309,9 @@ const Projects = () => {
                                     {project.description}
                                 </p>
                                 <ul className="flex gap-3 flex-wrap pt-4">
-                                    {['React', 'TypeScript', 'WebGL'].map((tag, i) => (
-                                        <li key={i} className="text-xs font-mono text-stone-500 border-b border-stone-800 pb-1">{tag}</li>
-                                    ))}
+                                    <li className="text-xs font-mono text-stone-500 border-b border-stone-800 pb-1">ROI Focus</li>
+                                    <li className="text-xs font-mono text-stone-500 border-b border-stone-800 pb-1">Scalability</li>
+                                    <li className="text-xs font-mono text-stone-500 border-b border-stone-800 pb-1">Security</li>
                                 </ul>
                             </div>
                         </motion.div>
@@ -326,20 +331,20 @@ const Expertise = () => {
                 <div className="grid md:grid-cols-2 gap-16 items-start">
                     <div>
                         <SectionHeader 
-                            title="Expertise" 
-                            subtitle="A comprehensive technical toolkit built over two decades."
+                            title="Capabilities" 
+                            subtitle="A comprehensive automation toolkit built over 15 years."
                         />
                         <p className="text-stone-400 text-lg leading-relaxed mb-8 font-light max-w-md">
-                            I don't just write code; I define systems. My approach balances bleeding-edge innovation with the stability required for enterprise scale.
+                            I don't just record macros; I design resilient automation architectures. My approach prioritizes stability, compliance, and scalable exception handling (REFramework).
                         </p>
                         <div className="grid grid-cols-2 gap-8 pt-8">
                              <div>
-                                <div className="text-4xl font-bold text-white mb-2">20+</div>
+                                <div className="text-4xl font-bold text-white mb-2">15+</div>
                                 <div className="text-sm text-stone-500 uppercase tracking-wider">Years Experience</div>
                              </div>
                              <div>
-                                <div className="text-4xl font-bold text-white mb-2">150+</div>
-                                <div className="text-sm text-stone-500 uppercase tracking-wider">Projects Shipped</div>
+                                <div className="text-4xl font-bold text-white mb-2">400+</div>
+                                <div className="text-sm text-stone-500 uppercase tracking-wider">Bots Deployed</div>
                              </div>
                         </div>
                     </div>
@@ -385,7 +390,7 @@ const Experience = () => {
             <div className="max-w-6xl mx-auto px-6">
                 <SectionHeader 
                     title="Career History" 
-                    subtitle="Roles & Impact"
+                    subtitle="Evolution of Automation"
                     align="center"
                 />
 
@@ -453,8 +458,9 @@ const Contact = () => {
         e.preventDefault();
         setFormStatus("submitting");
         const formData = new FormData(e.target);
+        // REPLACE YOUR_FORMSPREE_ID WITH YOUR ACTUAL ID
         try {
-            const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", { // REMEMBER TO PUT YOUR ID HERE
+            const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", { 
                 method: "POST",
                 body: formData,
                 headers: { 'Accept': 'application/json' }
@@ -482,9 +488,9 @@ const Contact = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight">Let's build the <br/> <span className="text-stone-600">extraordinary.</span></h2>
+                    <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight">Let's automate the <br/> <span className="text-stone-600">extraordinary.</span></h2>
                     <p className="text-xl text-stone-400 mb-12 max-w-xl mx-auto font-light">
-                        Currently available for select consulting engagements and fractional CTO roles.
+                        Available for CoE Consulting, RPA Architecture, and Digital Transformation strategies.
                     </p>
                     
                     {!showForm ? (
@@ -493,7 +499,7 @@ const Contact = () => {
                                 onClick={() => setShowForm(true)}
                                 className="px-10 py-5 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-full transition-all transform hover:-translate-y-1 shadow-lg shadow-orange-900/20 flex items-center justify-center gap-2"
                             >
-                                <Mail size={20} /> Start a Project
+                                <Mail size={20} /> Discuss Automation
                             </button>
                             <button 
                                 onClick={handleCopy}
@@ -515,10 +521,10 @@ const Contact = () => {
                             {formStatus === "success" ? (
                                 <div className="text-center py-12">
                                     <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-green-500">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                                        <Bot size={32} />
                                     </div>
-                                    <h4 className="text-2xl font-bold text-white mb-2">Message Sent!</h4>
-                                    <p className="text-stone-400">I'll get back to you as soon as possible.</p>
+                                    <h4 className="text-2xl font-bold text-white mb-2">Bot Dispatched!</h4>
+                                    <p className="text-stone-400">I will review your inquiry shortly.</p>
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -532,7 +538,7 @@ const Contact = () => {
                                     </div>
                                     <div>
                                         <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Message</label>
-                                        <textarea name="message" rows="3" required disabled={formStatus === "submitting"} className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors disabled:opacity-50" placeholder="Tell me about your project..."></textarea>
+                                        <textarea name="message" rows="3" required disabled={formStatus === "submitting"} className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors disabled:opacity-50" placeholder="Tell me about your automation needs..."></textarea>
                                     </div>
                                     <button type="submit" disabled={formStatus === "submitting"} className="w-full py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 disabled:bg-stone-800 disabled:cursor-not-allowed">
                                         {formStatus === "submitting" ? <>Processing...</> : <>Send Message</>}
@@ -564,14 +570,14 @@ const Footer = () => (
 );
 
 const App = () => {
-    // SEO STRUCTURED DATA FOR GOOGLE
+    // SEO STRUCTURED DATA FOR RPA EXPERT
     const schemaData = {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": PERSONAL_INFO.name,
         "jobTitle": PERSONAL_INFO.title,
-        "url": "https://vkjarugula.com", // REPLACE WITH YOUR ACTUAL DOMAIN
-        "knowsAbout": ["React", "AWS", "System Architecture", "Product Strategy", "WebGL", "TypeScript", "Node.js"],
+        "url": "https://vkjarugula.com",
+        "knowsAbout": ["Robotic Process Automation", "UiPath", "Blue Prism", "Automation Anywhere", "Intelligent Automation", "Hyperautomation", "C#", "Python"],
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Kansas City",
@@ -584,7 +590,7 @@ const App = () => {
             <div className="bg-stone-950 text-stone-200 min-h-screen font-sans selection:bg-orange-500/30 selection:text-orange-200 overflow-x-hidden">
                 <Helmet>
                     <title>{`${PERSONAL_INFO.name} | ${PERSONAL_INFO.title}`}</title>
-                    <meta name="description" content={`${PERSONAL_INFO.title} based in ${PERSONAL_INFO.location}. Expert in ${PERSONAL_INFO.keywords}.`} />
+                    <meta name="description" content={`${PERSONAL_INFO.title} with 15+ years in automation. Expert in UiPath, Blue Prism, CoE Strategy, and Intelligent Automation.`} />
                     <meta name="keywords" content={PERSONAL_INFO.keywords} />
                     <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
                 </Helmet>
