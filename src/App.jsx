@@ -1,96 +1,113 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { Menu, X, ArrowRight, Github, Linkedin, Twitter, Dribbble, Mail, Terminal, Cpu, Users, ChevronDown, ExternalLink, Bot, Workflow, FileJson } from 'lucide-react';
+import { Menu, X, ArrowRight, Github, Linkedin, Twitter, Dribbble, Mail, Terminal, Cpu, Users, ChevronDown, ExternalLink, Bot, Workflow, FileJson, Layers, Database } from 'lucide-react';
 
-// --- OPTIMIZED RPA DATA ---
+// --- OPTIMIZED RPA ARCHITECT DATA ---
 
 const PERSONAL_INFO = {
     name: "Venkata Jarugula",
     title: "Principal RPA Architect & AI Strategist",
-    tagline: "Orchestrating the digital workforce to liberate human potential.",
-    about: "With over 15 years in automation, I evolved from early scripting and macros to architecting enterprise-grade Intelligent Automation ecosystems. I build resilient bot infrastructures that save millions in operational costs.",
+    tagline: "Orchestrating the digital workforce. 15+ Years of SDLC & Intelligent Automation.",
+    about: "I don't just build bots; I architect enterprise ecosystems. With deep expertise in UiPath, Blue Prism, Automation Anywhere, and Power Automate, I lead Centers of Excellence (CoE) that govern the full automation lifecycle from discovery to disaster recovery.",
     email: "hire@vkjarugula.com",
     location: "Kansas City, MO",
-    // SEO TARGETED KEYWORDS FOR RPA
-    keywords: "RPA Architect, UiPath Developer, Blue Prism, Automation Anywhere, Intelligent Automation, Hyperautomation, COE Strategy, Kansas City RPA, Document Understanding, Python Automation"
+    keywords: "RPA Architect, UiPath, Blue Prism, Automation Anywhere, Power Automate, CoE Lead, SDLC, GenAI, Document Understanding, Process Mining"
 };
 
 const EXPERIENCE = [
     {
         id: 1,
-        role: "Head of Intelligent Automation (CoE Lead)",
-        company: "Global FinCorp",
-        period: "2018 — Present",
-        description: "Established the Automation Center of Excellence (CoE) from the ground up. Architected a hybrid infrastructure managing 400+ unattended robots. Integrated OpenAI API with UiPath for sentiment analysis on customer tickets, reducing manual triage by 85%.",
-        tech: ["UiPath", "Strategy", "Azure AI", "Governance"]
+        role: "Principal Intelligent Automation Architect",
+        company: "Global FinCorp (CoE Lead)",
+        period: "2019 — Present",
+        description: "Leading the enterprise automation strategy using UiPath and Power Automate. Responsible for the end-to-end SDLC governance of 400+ production robots.",
+        highlights: [
+            "Architecture: Designed a hybrid infrastructure using UiPath Automation Cloud and Power Automate Desktop (PAD) for seamless unattended execution.",
+            "New Tech: Integrated UiPath Autopilot and Clipboard AI to accelerate PDD creation and citizen development.",
+            "SDLC Governance: Enforced strict tollgates (Discovery -> Design -> Develop -> UAT -> Hypercare). Implemented CI/CD pipelines using Azure DevOps for automated code quality checks.",
+            "GenAI: Deployed 'Document Understanding' models coupled with OpenAI to process unstructured contracts."
+        ],
+        tech: ["UiPath", "Power Automate", "Azure DevOps", "GenAI"]
     },
     {
         id: 2,
-        role: "Senior RPA Solutions Architect",
+        role: "Sr. RPA Solution Architect",
         company: "Nexus Logistics",
-        period: "2013 — 2018",
-        description: "Led the migration from legacy mainframes to automated workflows. Designed the 'Logistics-Bot' fleet using Blue Prism that handled 50k daily shipping manifests. Implemented REFramework standards to ensure 99.9% bot uptime and self-healing capabilities.",
-        tech: ["Blue Prism", ".NET", "SQL", "Process Mining"]
+        period: "2015 — 2019",
+        description: "Managed the migration of legacy scripts to Automation Anywhere A360 and Blue Prism. Focused on high-availability architecture and disaster recovery.",
+        highlights: [
+            "Blue Prism: Architected a decoupled 'producer-consumer' workload model using Blue Prism Work Queues to handle 50k daily transactions.",
+            "Automation Anywhere: Led the migration from v11 to Automation 360 (Cloud), reducing infrastructure costs by 40%.",
+            "SDLC Phase: Specialized in the 'Design' phase, creating comprehensive Solution Design Documents (SDD) and Object Design Instructions (ODI).",
+            "Testing: Established automated testing frameworks to validate bot logic against SAP and Mainframe updates before production release."
+        ],
+        tech: ["Blue Prism", "Automation Anywhere", "SQL", "Citrix"]
     },
     {
         id: 3,
-        role: "Automation Engineer & VB.NET Developer",
+        role: "Lead Automation Developer",
         company: "Pixel Systems",
-        period: "2009 — 2013",
-        description: "Pre-RPA era automation specialist. Developed custom VB.NET scripts and macros to automate SAP data entry. Built early scraping engines for competitive pricing analysis, laying the groundwork for modern screen-scraping methodologies.",
-        tech: ["VB.NET", "Macros", "SAP Scripting", "QA Automation"]
+        period: "2010 — 2015",
+        description: "Foundational automation role evolving from .NET scripting to early RPA adoption. Built the rigorous coding standards still used by the team today.",
+        highlights: [
+            "Development: Hardened .NET and Python scripts for SAP GUI automation before RPA tools were mainstream.",
+            "SDLC Phase: Focused on 'Build' and 'Maintenance'. Created reusable component libraries (Logging, Error Handling, Credential Management).",
+            "Legacy Integration: Built custom connectors using VBA and VB.NET to bridge gaps between Oracle ERP and Excel macros.",
+            "Support: Managed L3 support for production bots, reducing Mean Time to Resolution (MTTR) by defining clear exception handling categories (System vs. Business)."
+        ],
+        tech: ["VB.NET", "Python", "VBA", "SAP Scripting"]
     }
 ];
 
 const PROJECTS = [
     {
         id: 1,
-        title: "Titan: Financial Reconciliation Bot",
-        category: "FinTech / UiPath",
-        // Image: Abstract data streams representing financial flow
+        title: "Finance Reconciliation Engine",
+        category: "UiPath & AI Center",
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
-        description: "An enterprise-grade Unattended Bot that reconciles $50M+ in daily transactions across SAP and Mainframe terminals. Features automated exception handling and email reporting for CFOs.",
-        link: "#"
+        description: "A massive unattended automation handling $50M in daily reconciliations. Uses UiPath AI Center for matching logic and Action Center for human-in-the-loop validation.",
+        // LINK TO REAL UIPATH FINANCE ARTICLE
+        link: "https://www.uipath.com/solutions/department/finance-and-accounting-automation" 
     },
     {
         id: 2,
-        title: "Cognitive Invoice Processor",
-        category: "AI & OCR",
-        // Image: Scanning/Document processing vibe
+        title: "Invoice Hyperautomation",
+        category: "Power Automate & AI Builder",
         image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&q=80&w=800",
-        description: "Hyperautomation solution utilizing Document Understanding (ML) to read non-standard PDF invoices. Achieved 95% accuracy in extracting line items, pushing data directly to Oracle ERP.",
-        link: "#"
+        description: "End-to-end AP automation. Uses Power Automate Process Mining to identify bottlenecks and AI Builder to extract data from multi-format invoices with 99% accuracy.",
+        // LINK TO REAL MICROSOFT AI BUILDER DOCS
+        link: "https://learn.microsoft.com/en-us/ai-builder/form-processing-model-overview"
     },
     {
         id: 3,
-        title: "Ops-Healer: IT Infrastructure Bot",
-        category: "IT Operations",
-        // Image: Server room/Technology abstract
+        title: "IT Ops Self-Healing Bot",
+        category: "Automation Anywhere A360",
         image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
-        description: "A background daemon that monitors server health. Automatically restarts hung services, clears temp logs, and scales Azure VM instances based on CPU load triggers without human intervention.",
-        link: "#"
+        description: "IT Service Management automation. Monitors server health via A360, performs disk cleanups, restarts services, and updates tickets in ServiceNow automatically.",
+        // LINK TO REAL AUTOMATION ANYWHERE IT OPS PAGE
+        link: "https://www.automationanywhere.com/solutions/it-operations"
     }
 ];
 
 const SKILL_CATEGORIES = [
     {
-        id: 'rpa',
-        title: "RPA & Orchestration",
+        id: 'platforms',
+        title: "RPA Platforms",
         icon: Bot,
-        skills: ["UiPath (REFramework)", "Blue Prism", "Automation Anywhere", "Power Automate Desktop", "Orchestrator Management", "Unattended Bots"]
+        skills: ["UiPath (Studio/Orchestrator)", "Blue Prism (Release Mgr)", "Automation Anywhere (A360)", "Power Automate (Cloud/Desktop)"]
     },
     {
-        id: 'dev',
-        title: "Development & Scripting",
-        icon: Terminal,
-        skills: ["C# / VB.NET", "Python (Pandas/Selenium)", "SQL / Stored Procs", "API Integration (REST/SOAP)", "Regular Expressions (Regex)"]
+        id: 'arch',
+        title: "Architecture & SDLC",
+        icon: Layers,
+        skills: ["REFramework / Dispatcher-Performer", "PDD / SDD / ODI Documentation", "CI/CD Pipelines (Azure DevOps)", "Disaster Recovery Strategy", "License Management"]
     },
     {
-        id: 'strat',
-        title: "Strategy & Architecture",
-        icon: Workflow, // Changed icon to Workflow
-        skills: ["CoE Setup", "PDD / SDD Documentation", "Process Mining", "ROI Analysis", "Disaster Recovery", "Bot Governance"]
+        id: 'tech',
+        title: "Advanced Tech",
+        icon: Database,
+        skills: ["GenAI / LLM Integration", "Process Mining", "Document Understanding (OCR)", "Python & C# .NET", "SQL / Stored Procedures", "API (REST/SOAP)"]
     }
 ];
 
@@ -150,9 +167,9 @@ const Navbar = () => {
                 </a>
 
                 <div className="hidden md:flex items-center gap-10">
-                    <NavLink href="#projects">Case Studies</NavLink>
-                    <NavLink href="#expertise">Capabilities</NavLink>
-                    <NavLink href="#experience">Experience</NavLink>
+                    <NavLink href="#projects">Architecture</NavLink>
+                    <NavLink href="#expertise">Tech Stack</NavLink>
+                    <NavLink href="#experience">SDLC Journey</NavLink>
                     <a href="#contact" className="px-6 py-2.5 text-sm font-semibold text-stone-950 bg-stone-100 hover:bg-white rounded-full transition-all transform hover:-translate-y-0.5 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                         Contact
                     </a>
@@ -172,9 +189,9 @@ const Navbar = () => {
                         className="md:hidden bg-stone-950 border-b border-stone-800 overflow-hidden absolute w-full"
                     >
                         <div className="flex flex-col p-6 gap-6">
-                            <NavLink href="#projects" onClick={() => setIsOpen(false)}>Case Studies</NavLink>
-                            <NavLink href="#expertise" onClick={() => setIsOpen(false)}>Capabilities</NavLink>
-                            <NavLink href="#experience" onClick={() => setIsOpen(false)}>Experience</NavLink>
+                            <NavLink href="#projects" onClick={() => setIsOpen(false)}>Architecture</NavLink>
+                            <NavLink href="#expertise" onClick={() => setIsOpen(false)}>Tech Stack</NavLink>
+                            <NavLink href="#experience" onClick={() => setIsOpen(false)}>SDLC Journey</NavLink>
                             <NavLink href="#contact" onClick={() => setIsOpen(false)}>Contact</NavLink>
                         </div>
                     </motion.div>
@@ -187,7 +204,6 @@ const Navbar = () => {
 const Hero = () => {
     return (
         <section className="min-h-screen flex items-center relative pt-20 overflow-hidden">
-            {/* Cinematic Background Effects */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <div className="absolute top-[-10%] right-[-5%] w-[800px] h-[800px] bg-orange-600/10 rounded-full blur-[120px] opacity-30 mix-blend-screen animate-pulse duration-1000"></div>
                 <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-rose-900/20 rounded-full blur-[120px] opacity-20 mix-blend-screen"></div>
@@ -201,16 +217,16 @@ const Hero = () => {
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-stone-900/50 border border-stone-800 mb-8 backdrop-blur-sm hover:border-orange-500/30 transition-colors">
                         <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-                        <span className="text-xs font-medium text-stone-300 uppercase tracking-widest">Open for Projects</span>
+                        <span className="text-xs font-medium text-stone-300 uppercase tracking-widest">Open for Consulting</span>
                     </div>
                     
                     <h1 className="text-5xl lg:text-7xl font-sans font-bold leading-[1.05] text-white mb-8 tracking-tight">
-                        Designing the <br/>
+                        Architecting the <br/>
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-rose-400 to-orange-400 animate-gradient bg-300%">Digital Workforce.</span>
                     </h1>
 
                     <p className="text-xl text-stone-400 mb-10 max-w-lg leading-relaxed font-light">
-                        {PERSONAL_INFO.tagline} I bridge the gap between complex business processes and resilient, intelligent automation.
+                        {PERSONAL_INFO.tagline} 15 years of bridging the gap between complex business processes and resilient, scalable automation.
                     </p>
 
                     <div className="flex flex-wrap gap-6">
@@ -219,13 +235,12 @@ const Hero = () => {
                             className="group relative px-8 py-4 bg-stone-100 text-stone-950 font-bold rounded-full overflow-hidden transition-all hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                         >
                             <span className="relative z-10 flex items-center gap-2">
-                                View Case Studies <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>
+                                View Architecture <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>
                             </span>
                         </a>
                     </div>
                 </motion.div>
 
-                {/* Abstract Visual Right Side - RPA Concept */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -243,26 +258,15 @@ const Hero = () => {
                                     <div className="w-3 h-3 rounded-full bg-green-500"></div>
                                 </div>
                                 <div className="space-y-2 font-mono text-sm text-stone-400">
-                                    <div className="flex"><span className="text-rose-400 mr-2">var</span> botFleet = <span className="text-orange-400 ml-2">new</span> Orchestrator();</div>
-                                    <div className="pl-4">botFleet.deploy(<span className="text-green-400">'Finance_Bot_v2'</span>);</div>
-                                    <div className="pl-4">botFleet.optimize(<span className="text-blue-400">ROI_MAX</span>);</div>
+                                    <div className="flex"><span className="text-rose-400 mr-2">const</span> rpaCoE = <span className="text-orange-400 ml-2">new</span> Architect();</div>
+                                    <div className="pl-4">rpaCoE.orchestrate(<span className="text-green-400">'UiPath'</span>, <span className="text-green-400">'PowerAutomate'</span>);</div>
+                                    <div className="pl-4">rpaCoE.scale(<span className="text-blue-400">GLOBAL</span>);</div>
                                 </div>
                              </div>
                         </div>
                      </div>
                 </motion.div>
             </div>
-
-            <motion.a 
-                href="#projects"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 text-stone-500 flex flex-col items-center gap-2 hover:text-orange-400 transition-colors cursor-pointer"
-            >
-                <span className="text-xs tracking-widest uppercase">Scroll</span>
-                <ChevronDown size={20} className="animate-bounce" />
-            </motion.a>
         </section>
     );
 };
@@ -308,11 +312,10 @@ const Projects = () => {
                                 <p className="text-stone-400 text-lg leading-relaxed font-light">
                                     {project.description}
                                 </p>
-                                <ul className="flex gap-3 flex-wrap pt-4">
-                                    <li className="text-xs font-mono text-stone-500 border-b border-stone-800 pb-1">ROI Focus</li>
-                                    <li className="text-xs font-mono text-stone-500 border-b border-stone-800 pb-1">Scalability</li>
-                                    <li className="text-xs font-mono text-stone-500 border-b border-stone-800 pb-1">Security</li>
-                                </ul>
+                                {/* LINKED BUTTON */}
+                                <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-orange-500 font-bold hover:text-orange-400 transition-colors">
+                                    View Technology Stack <ArrowRight size={16} />
+                                </a>
                             </div>
                         </motion.div>
                     ))}
@@ -335,12 +338,12 @@ const Expertise = () => {
                             subtitle="A comprehensive automation toolkit built over 15 years."
                         />
                         <p className="text-stone-400 text-lg leading-relaxed mb-8 font-light max-w-md">
-                            I don't just record macros; I design resilient automation architectures. My approach prioritizes stability, compliance, and scalable exception handling (REFramework).
+                            True architecture goes beyond recording macros. I design resilient systems that prioritize stability, compliance, and scalable exception handling using the latest frameworks.
                         </p>
                         <div className="grid grid-cols-2 gap-8 pt-8">
                              <div>
                                 <div className="text-4xl font-bold text-white mb-2">15+</div>
-                                <div className="text-sm text-stone-500 uppercase tracking-wider">Years Experience</div>
+                                <div className="text-sm text-stone-500 uppercase tracking-wider">Years SDLC</div>
                              </div>
                              <div>
                                 <div className="text-4xl font-bold text-white mb-2">400+</div>
@@ -390,7 +393,7 @@ const Experience = () => {
             <div className="max-w-6xl mx-auto px-6">
                 <SectionHeader 
                     title="Career History" 
-                    subtitle="Evolution of Automation"
+                    subtitle="SDLC & Leadership Journey"
                     align="center"
                 />
 
@@ -408,6 +411,17 @@ const Experience = () => {
                                 <p className="text-stone-400 leading-relaxed mb-6 font-light text-lg">
                                     {exp.description}
                                 </p>
+                                
+                                {/* SDLC HIGHLIGHTS */}
+                                <div className="mb-6 space-y-3 bg-stone-900/30 p-6 rounded-xl border border-stone-800/50">
+                                    {exp.highlights.map((point, i) => (
+                                        <div key={i} className="flex gap-3 text-stone-400 text-sm leading-relaxed">
+                                            <span className="text-orange-500 mt-1">▹</span>
+                                            <span>{point}</span>
+                                        </div>
+                                    ))}
+                                </div>
+
                                 <div className="flex flex-wrap gap-3">
                                     {exp.tech.map((t, i) => (
                                         <span key={i} className="px-3 py-1 bg-stone-900 border border-stone-800 text-stone-500 text-xs rounded-full">
@@ -458,7 +472,6 @@ const Contact = () => {
         e.preventDefault();
         setFormStatus("submitting");
         const formData = new FormData(e.target);
-        // REPLACE YOUR_FORMSPREE_ID WITH YOUR ACTUAL ID
         try {
             const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", { 
                 method: "POST",
@@ -570,7 +583,6 @@ const Footer = () => (
 );
 
 const App = () => {
-    // SEO STRUCTURED DATA FOR RPA EXPERT
     const schemaData = {
         "@context": "https://schema.org",
         "@type": "Person",
