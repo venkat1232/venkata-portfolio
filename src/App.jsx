@@ -562,7 +562,7 @@ const Contact = () => {
                     )}
 
                     <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-stone-900/50 border border-white/5 backdrop-blur-md gap-2">
-                        {[{ icon: Linkedin, href: "#" }, { icon: Twitter, href: "#" }, { icon: Github, href: "#" }, { icon: Dribbble, href: "#" }].map((item, i) => (
+                        {[{ icon: Linkedin, href: "https://www.linkedin.com/in/venkatakrishnajarugula?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" }, { icon: Twitter, href: "#" }, { icon: Github, href: "https://github.com/venkat1232" }, { icon: Dribbble, href: "#" }].map((item, i) => (
                             <a key={i} href={item.href} className="w-14 h-14 flex items-center justify-center rounded-xl text-stone-400 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110">
                                 <item.icon size={24} />
                             </a>
