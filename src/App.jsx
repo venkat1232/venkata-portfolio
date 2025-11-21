@@ -245,27 +245,32 @@ const Hero = () => {
                     </div>
                 </motion.div>
 
-                {/* PHOTO SECTION - REPLACED ABSTRACT VISUAL */}
+                {/* --- PHOTO SECTION (FIXED CENTER ALIGNMENT) --- */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1, delay: 0.2 }}
-                    className="hidden md:block relative"
+                    // ADDED: flex justify-center to force centering in the column
+                    className="hidden md:flex justify-center items-center relative"
                 >
-                    <div className="relative w-full aspect-square max-w-lg mx-auto z-10">
-                        {/* IMPORTANT: REPLACE THE SRC BELOW WITH THE PATH TO YOUR PHOTO IN THE PUBLIC FOLDER */}
-                        <div className="aspect-square rounded-full overflow-hidden border-4 border-stone-800 shadow-2xl relative z-20 group">
+                    {/* Container limits width but keeps circle shape */}
+                    <div className="relative w-full max-w-[450px] aspect-square">
+                        
+                        {/* The Photo Circle */}
+                        <div className="absolute inset-0 rounded-full overflow-hidden border-4 border-stone-800 shadow-2xl z-20 group">
+                            {/* IMAGE LOGIC: object-cover fills the circle, object-center focuses on the face */}
                             <img
-                                src="/profile.jpg" // <--- UPDATE THIS PATH
+                                src="/profile.jpg" // REPLACE THIS WITH YOUR FILENAME
                                 alt="Venkata Jarugula"
-                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                                className="w-full h-full object-cover object-center grayscale group-hover:grayscale-0 transition-all duration-500 transform hover:scale-105"
                             />
-                             <div className="absolute inset-0 bg-orange-500/10 mix-blend-overlay pointer-events-none"></div>
+                             {/* Orange Tint Overlay (Fades on Hover) */}
+                             <div className="absolute inset-0 bg-orange-500/10 mix-blend-overlay pointer-events-none group-hover:opacity-0 transition-opacity duration-500"></div>
                         </div>
 
-                        {/* Decorative elements behind the photo */}
-                        <div className="absolute inset-0 -z-10 border border-stone-800 rounded-full opacity-30 animate-[spin_20s_linear_infinite]"></div>
-                        <div className="absolute inset-10 -z-10 border border-orange-500/20 rounded-full opacity-40 animate-[spin_15s_linear_infinite_reverse]"></div>
+                        {/* Decorative Spinning Rings (Centered Behind) */}
+                        <div className="absolute inset-[-20px] -z-10 border border-stone-800 rounded-full opacity-30 animate-[spin_20s_linear_infinite]"></div>
+                        <div className="absolute inset-[20px] -z-10 border border-orange-500/20 rounded-full opacity-40 animate-[spin_15s_linear_infinite_reverse]"></div>
                     </div>
                 </motion.div>
             </div>
