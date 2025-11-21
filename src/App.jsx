@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Helmet, HelmetProvider } from 'react-helmet-async'; // IMPORTING SEO TOOL
 import { Menu, X, ArrowRight, Github, Linkedin, Twitter, Dribbble, Mail, Terminal, PenTool, Users, ChevronDown, ExternalLink } from 'lucide-react';
 
 // --- MOCK DATA ---
 const PERSONAL_INFO = {
     name: "Venkata Jarugula",
-    title: "Product Architect",
+    title: "Product Architect & Technical Lead",
     tagline: "Building resilient systems with human-centric design.",
     about: "With more than a decade of experience, I bridge the gap between conceptual design and technical execution.",
     email: "hire@vkjarugula.com",
-    location: "Kansas City, MO"
+    location: "Kansas City, MO",
+    // SEO SPECIFIC KEYWORDS
+    keywords: "Product Architect, React Developer, AWS Solutions Architect, Technical Lead, Frontend Engineer, System Design, Kansas City Developer, Micro-frontends"
 };
 
 const EXPERIENCE = [
@@ -135,11 +138,9 @@ const Navbar = () => {
         <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-stone-950/90 backdrop-blur-lg border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 <a href="#" className="text-xl font-bold tracking-tighter text-white flex items-center gap-3 group">
-                    {/* LOGO REVERTED TO ORIGINAL CSS VERSION */}
                     <div className="w-10 h-10 bg-gradient-to-tr from-orange-600 to-rose-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-orange-900/20 group-hover:scale-105 transition-transform">
                         V.
                     </div>
-                    
                     <span className={`font-bold transition-opacity duration-300 ${scrolled ? 'opacity-100' : 'opacity-0 md:opacity-100'}`}>Venkata</span>
                 </a>
 
@@ -288,8 +289,6 @@ const Projects = () => {
                                         className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100"
                                     />
                                     <div className="absolute inset-0 bg-stone-950/20 group-hover:bg-transparent transition-colors duration-500"></div>
-                                    
-                                    {/* Floating Action Button on Image */}
                                     <div className="absolute bottom-6 right-6 w-12 h-12 bg-white rounded-full flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
                                         <ExternalLink size={20} className="text-black" />
                                     </div>
@@ -393,14 +392,12 @@ const Experience = () => {
                 <div className="mt-20 space-y-20">
                     {EXPERIENCE.map((exp, index) => (
                         <div key={exp.id} className="grid md:grid-cols-[1fr_2fr] gap-8 md:gap-20 group">
-                            {/* Sticky Left Side */}
                             <div className="md:text-right md:sticky md:top-32 h-fit">
                                 <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-orange-400 transition-colors">{exp.company}</h3>
                                 <div className="text-stone-500 font-mono text-sm mb-4">{exp.period}</div>
                                 <div className="hidden md:block h-[1px] w-full bg-gradient-to-l from-stone-800 to-transparent mt-6"></div>
                             </div>
 
-                            {/* Right Side Content */}
                             <div>
                                 <h4 className="text-xl text-stone-200 font-medium mb-4">{exp.role}</h4>
                                 <p className="text-stone-400 leading-relaxed mb-6 font-light text-lg">
@@ -425,9 +422,7 @@ const Experience = () => {
 const Contact = () => {
     const [showForm, setShowForm] = useState(false);
     const [copied, setCopied] = useState(false);
-    
-    // NEW: State for form submission status
-    const [formStatus, setFormStatus] = useState("idle"); // idle, submitting, success, error
+    const [formStatus, setFormStatus] = useState("idle");
 
     const handleCopy = () => {
         try {
@@ -454,27 +449,19 @@ const Contact = () => {
         setTimeout(() => setCopied(false), 2000);
     };
 
-    // NEW: Handle the submission via JavaScript (No redirect!)
     const handleSubmit = async (e) => {
         e.preventDefault();
         setFormStatus("submitting");
-
         const formData = new FormData(e.target);
-        
-        // REPLACE 'YOUR_FORMSPREE_ID' BELOW with your actual ID (e.g. xbjbqloz)
         try {
-            const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", {
+            const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", { // REMEMBER TO PUT YOUR ID HERE
                 method: "POST",
                 body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                headers: { 'Accept': 'application/json' }
             });
-
             if (response.ok) {
                 setFormStatus("success");
                 e.target.reset();
-                // Optional: Close form after 3 seconds
                 setTimeout(() => {
                     setShowForm(false);
                     setFormStatus("idle");
@@ -525,8 +512,6 @@ const Contact = () => {
                                 <h3 className="text-xl font-bold text-white">Project Details</h3>
                                 <button onClick={() => setShowForm(false)} className="text-stone-500 hover:text-white"><X size={20}/></button>
                             </div>
-
-                            {/* SUCCESS STATE: Show this if message sent successfully */}
                             {formStatus === "success" ? (
                                 <div className="text-center py-12">
                                     <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-green-500">
@@ -536,75 +521,30 @@ const Contact = () => {
                                     <p className="text-stone-400">I'll get back to you as soon as possible.</p>
                                 </div>
                             ) : (
-                                /* FORM STATE */
                                 <form onSubmit={handleSubmit} className="space-y-4">
                                     <div>
                                         <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Name</label>
-                                        <input 
-                                            type="text" 
-                                            name="name" 
-                                            required
-                                            disabled={formStatus === "submitting"}
-                                            className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors disabled:opacity-50" 
-                                            placeholder="Your Name" 
-                                        />
+                                        <input type="text" name="name" required disabled={formStatus === "submitting"} className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors disabled:opacity-50" placeholder="Your Name" />
                                     </div>
                                     <div>
                                         <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Email</label>
-                                        <input 
-                                            type="email" 
-                                            name="email" 
-                                            required
-                                            disabled={formStatus === "submitting"}
-                                            className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors disabled:opacity-50" 
-                                            placeholder="your@email.com" 
-                                        />
+                                        <input type="email" name="email" required disabled={formStatus === "submitting"} className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors disabled:opacity-50" placeholder="your@email.com" />
                                     </div>
                                     <div>
                                         <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Message</label>
-                                        <textarea 
-                                            name="message" 
-                                            rows="3" 
-                                            required
-                                            disabled={formStatus === "submitting"}
-                                            className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors disabled:opacity-50" 
-                                            placeholder="Tell me about your project..."
-                                        ></textarea>
+                                        <textarea name="message" rows="3" required disabled={formStatus === "submitting"} className="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition-colors disabled:opacity-50" placeholder="Tell me about your project..."></textarea>
                                     </div>
-                                    
-                                    {formStatus === "error" && (
-                                        <p className="text-red-500 text-sm text-center">Something went wrong. Please try again.</p>
-                                    )}
-
-                                    <button 
-                                        type="submit" 
-                                        disabled={formStatus === "submitting"}
-                                        className="w-full py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 disabled:bg-stone-800 disabled:cursor-not-allowed"
-                                    >
-                                        {formStatus === "submitting" ? (
-                                            <>Processing...</>
-                                        ) : (
-                                            <>Send Message</>
-                                        )}
+                                    <button type="submit" disabled={formStatus === "submitting"} className="w-full py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 disabled:bg-stone-800 disabled:cursor-not-allowed">
+                                        {formStatus === "submitting" ? <>Processing...</> : <>Send Message</>}
                                     </button>
                                 </form>
                             )}
                         </motion.div>
                     )}
 
-                    {/* Social Dock */}
                     <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-stone-900/50 border border-white/5 backdrop-blur-md gap-2">
-                        {[
-                            { icon: Linkedin, href: "#" }, 
-                            { icon: Twitter, href: "#" }, 
-                            { icon: Github, href: "#" }, 
-                            { icon: Dribbble, href: "#" }
-                        ].map((item, i) => (
-                            <a 
-                                key={i} 
-                                href={item.href} 
-                                className="w-14 h-14 flex items-center justify-center rounded-xl text-stone-400 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110"
-                            >
+                        {[{ icon: Linkedin, href: "#" }, { icon: Twitter, href: "#" }, { icon: Github, href: "#" }, { icon: Dribbble, href: "#" }].map((item, i) => (
+                            <a key={i} href={item.href} className="w-14 h-14 flex items-center justify-center rounded-xl text-stone-400 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110">
                                 <item.icon size={24} />
                             </a>
                         ))}
@@ -624,53 +564,52 @@ const Footer = () => (
 );
 
 const App = () => {
-    return (
-        <div className="bg-stone-950 text-stone-200 min-h-screen font-sans selection:bg-orange-500/30 selection:text-orange-200 overflow-x-hidden">
-            <style>{`
-                @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-                
-                :root {
-                    font-family: 'Plus Jakarta Sans', sans-serif;
-                }
-                
-                /* Noise Texture */
-                body::before {
-                    content: "";
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-                    pointer-events: none;
-                    z-index: 50;
-                    opacity: 0.4;
-                }
+    // SEO STRUCTURED DATA FOR GOOGLE
+    const schemaData = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": PERSONAL_INFO.name,
+        "jobTitle": PERSONAL_INFO.title,
+        "url": "https://vkjarugula.com", // REPLACE WITH YOUR ACTUAL DOMAIN
+        "knowsAbout": ["React", "AWS", "System Architecture", "Product Strategy", "WebGL", "TypeScript", "Node.js"],
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kansas City",
+            "addressRegion": "MO"
+        }
+    };
 
-                ::-webkit-scrollbar {
-                    width: 8px;
-                }
-                ::-webkit-scrollbar-track {
-                    background: #0c0a09;
-                }
-                ::-webkit-scrollbar-thumb {
-                    background: #292524;
-                    border-radius: 4px;
-                }
-                ::-webkit-scrollbar-thumb:hover {
-                    background: #44403c;
-                }
-            `}</style>
-            <Navbar />
-            <main>
-                <Hero />
-                <Projects />
-                <Expertise />
-                <Experience />
-                <Contact />
-            </main>
-            <Footer />
-        </div>
+    return (
+        <HelmetProvider>
+            <div className="bg-stone-950 text-stone-200 min-h-screen font-sans selection:bg-orange-500/30 selection:text-orange-200 overflow-x-hidden">
+                <Helmet>
+                    <title>{`${PERSONAL_INFO.name} | ${PERSONAL_INFO.title}`}</title>
+                    <meta name="description" content={`${PERSONAL_INFO.title} based in ${PERSONAL_INFO.location}. Expert in ${PERSONAL_INFO.keywords}.`} />
+                    <meta name="keywords" content={PERSONAL_INFO.keywords} />
+                    <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
+                </Helmet>
+
+                <style>{`
+                    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+                    :root { font-family: 'Plus Jakarta Sans', sans-serif; }
+                    body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 50; opacity: 0.4; }
+                    ::-webkit-scrollbar { width: 8px; }
+                    ::-webkit-scrollbar-track { background: #0c0a09; }
+                    ::-webkit-scrollbar-thumb { background: #292524; border-radius: 4px; }
+                    ::-webkit-scrollbar-thumb:hover { background: #44403c; }
+                `}</style>
+                
+                <Navbar />
+                <main>
+                    <Hero />
+                    <Projects />
+                    <Expertise />
+                    <Experience />
+                    <Contact />
+                </main>
+                <Footer />
+            </div>
+        </HelmetProvider>
     );
 };
 
