@@ -4,12 +4,12 @@ import { Menu, X, ArrowRight, Github, Linkedin, Twitter, Dribbble, Mail, Termina
 
 // --- MOCK DATA ---
 const PERSONAL_INFO = {
-    name: "Venkata",
+    name: "Venkata Jarugula",
     title: "Product Architect",
     tagline: "Building resilient systems with human-centric design.",
-    about: "With over two decades of experience, I bridge the gap between conceptual design and technical execution.",
-    email: "venkata@example.com",
-    location: "San Francisco, CA"
+    about: "With more than a decades of experience, I bridge the gap between conceptual design and technical execution.",
+    email: "hire@vkjarugula.com",
+    location: "Kansas City, MO"
 };
 
 const EXPERIENCE = [

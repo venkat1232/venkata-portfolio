@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="-12 -12 64 64" fill="none">
+  <defs>
+    <linearGradient id="grad_v" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ea580c"/>
+      <stop offset="100%" stop-color="#e11d48"/>
+    </linearGradient>
+    <filter id="shadow_v" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
+        <feOffset dx="0" dy="4" result="offsetblur"/>
+        <feFlood flood-color="#7c2d12" flood-opacity="0.2"/>
+        <feComposite in2="offsetblur" operator="in"/>
+        <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#shadow_v)">
+      <rect x="0" y="0" width="40" height="40" rx="12" fill="url(#grad_v)" />
+      
+      <text x="20" y="20" dy="1" dominant-baseline="central" text-anchor="middle" fill="white" font-weight="bold" font-family="Arial, sans-serif" font-size="22">V.</text>
+  </g>
+</svg>
