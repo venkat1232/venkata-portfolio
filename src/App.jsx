@@ -464,7 +464,7 @@ const Contact = () => {
         try {
             // UPDATED: Uses process.env to hide ID from GitHub
             // If running locally without .env, ensure you replace the string or add the file
-            const formId = process.env.REACT_APP_FORMSPREE_ID || 'YOUR_FORMSPREE_ID';
+            const formId = process.env.REACT_APP_FORMSPREE_ID || 'mqajawjn';
             
             const response = await fetch(`https://formspree.io/f/${formId}`, { 
                 method: "POST",
