@@ -462,8 +462,11 @@ const Contact = () => {
         const formData = new FormData(e.target);
         
         try {
-            // IMPORTANT: REPLACE WITH YOUR ACTUAL FORMSPREE ID
-            const response = await fetch("https://formspree.io/f/mqajawjn", { 
+            // UPDATED: Uses process.env to hide ID from GitHub
+            // If running locally without .env, ensure you replace the string or add the file
+            const formId = process.env.REACT_APP_FORMSPREE_ID || 'YOUR_FORMSPREE_ID';
+            
+            const response = await fetch(`https://formspree.io/f/${formId}`, { 
                 method: "POST",
                 body: formData,
                 headers: { 'Accept': 'application/json' }
@@ -503,13 +506,13 @@ const Contact = () => {
                         <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20">
                             <button 
                                 onClick={() => setShowForm(true)}
-                                className="relative z-20 px-10 py-5 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-full transition-all transform hover:-translate-y-1 shadow-lg shadow-orange-900/20 flex items-center justify-center gap-2"
+                                className="relative z-20 w-full sm:w-auto px-10 py-5 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-full transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
                             >
                                 <Mail size={20} /> Discuss Automation
                             </button>
                             <button 
                                 onClick={handleCopy}
-                                className="relative z-20 px-10 py-5 bg-stone-900 border border-stone-800 hover:bg-stone-800 text-white font-medium rounded-full transition-all w-48"
+                                className="relative z-20 w-full sm:w-48 px-10 py-5 bg-stone-900 border border-stone-800 hover:bg-stone-800 text-white font-medium rounded-full transition-all"
                             >
                                 {copied ? "Copied!" : "Copy Email"}
                             </button>
@@ -563,7 +566,13 @@ const Contact = () => {
 
                     <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-stone-900/50 border border-white/5 backdrop-blur-md gap-2">
                         {[{ icon: Linkedin, href: "https://www.linkedin.com/in/venkatakrishnajarugula?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" }, { icon: Twitter, href: "#" }, { icon: Github, href: "https://github.com/venkat1232" }, { icon: Dribbble, href: "#" }].map((item, i) => (
-                            <a key={i} href={item.href} className="w-14 h-14 flex items-center justify-center rounded-xl text-stone-400 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110">
+                            <a 
+                                key={i} 
+                                href={item.href} 
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-14 h-14 flex items-center justify-center rounded-xl text-stone-400 hover:text-white hover:bg-white/10 transition-all duration-300 hover:scale-110"
+                            >
                                 <item.icon size={24} />
                             </a>
                         ))}
